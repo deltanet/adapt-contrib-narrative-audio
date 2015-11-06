@@ -12,6 +12,17 @@
         "_hasNavigationInTextArea": false,
         "mobileInstruction": "This is optional instruction text that will be shown when viewed on mobile.",
         "_setCompletionOn":"allItems",
+        "_audio": {
+            "_isEnabled": true,
+            "_showControls": true,
+            "_autoplay": true,
+            "_channel": 0,
+            "_location": "top-right",
+            "_media": {
+                "mp3": "course/en/audio/***.mp3",
+                "ogg": "course/en/audio/***.ogg"
+            }
+        },
         "_items": [
             {
                 "title": "Narrative stage 1 title",
@@ -20,7 +31,11 @@
                     "src": "course/en/images/image-slider-1.jpg",
                     "alt": "First graphic"
                 },
-                "strapline": "Here is the first..."
+                "strapline": "Here is the first...",
+                "_audio": {
+                    "mp3": "course/en/audio/***.mp3",
+                    "ogg": "course/en/audio/***.ogg"
+                }
             },
             {
                 "title": "Narrative stage 2 title",
@@ -29,7 +44,11 @@
                     "src": "course/en/images/image-slider-2.jpg",
                     "alt": "Second graphic"
                 },
-                "strapline": "Now comes the second..."
+                "strapline": "Now comes the second...",
+                "_audio": {
+                    "mp3": "course/en/audio/***.mp3",
+                    "ogg": "course/en/audio/***.ogg"
+                }
             },
             {
                 "title": "Narrative stage 3 title",
@@ -38,7 +57,11 @@
                     "src": "course/en/images/image-slider-3.jpg",
                     "alt": "Third graphic"
                 },
-                "strapline": "Third here!"
+                "strapline": "Third here!",
+                "_audio": {
+                    "mp3": "course/en/audio/***.mp3",
+                    "ogg": "course/en/audio/***.ogg"
+                }
             }
         ]
     }

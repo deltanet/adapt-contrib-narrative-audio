@@ -1,9 +1,9 @@
 {
   "name": "adapt-contrib-narrative",
   "version": "2.0.2",
-  "framework": "^2.0.0",
-  "homepage": "https://github.com/adaptlearning/adapt-contrib-narrative",
-  "issues": "https://adaptlearning.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=10100&issuetype=1&priority=6&components=10512",
+  "framework": "2.0.4",
+  "homepage": "https://github.com/deltanet/adapt-contrib-narrative-audio",
+  "issues": "https://github.com/deltanet/adapt-contrib-narrative-audio/issues",
   "displayName" : "Narrative",
   "component" : "narrative",
   "assetFields" : [
@@ -15,5 +15,5 @@
     "adapt-plugin",
     "adapt-component"
   ],
-  "license": "GPLv3"
+  "license": "GPL-3.0"
 }
