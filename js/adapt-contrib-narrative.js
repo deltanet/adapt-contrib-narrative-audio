@@ -200,14 +200,6 @@ define(function(require) {
             this.$('.narrative-content-item').addClass('narrative-hidden').a11y_on(false).eq(stage).removeClass('narrative-hidden').a11y_on(true);
             this.$('.narrative-strapline-title').a11y_cntrl_enabled(false).eq(stage).a11y_cntrl_enabled(true);
 
-            // If enabled
-            if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled) {
-                if(Adapt.audio.textSize == 1) {
-                    this.$('.narrative-content-title-inner').eq(stage).html(this.model.get('_items')[stage].titleReduced);
-                    this.$('.narrative-content-body-inner').eq(stage).html(this.model.get('_items')[stage].bodyReduced);
-                }
-            }
-
             this.evaluateNavigation();
             this.evaluateCompletion();
 
@@ -412,12 +404,23 @@ define(function(require) {
         replaceText: function(value) {
             // If enabled
             if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled) {
+                // Change component title and body
                 if(value == 0) {
                     this.$('.component-title-inner').html(this.model.get('displayTitle')).a11y_text();
                     this.$('.component-body-inner').html(this.model.get('body')).a11y_text();
                 } else {
                     this.$('.component-title-inner').html(this.model.get('displayTitleReduced')).a11y_text();
                     this.$('.component-body-inner').html(this.model.get('bodyReduced')).a11y_text();
+                }
+                // Change each items title and body
+                for (var i = 0; i < this.model.get('_items').length; i++) {
+                    if(value == 0) {
+                        this.$('.narrative-content-title-inner').eq(i).html(this.model.get('_items')[i].title);
+                        this.$('.narrative-content-body-inner').eq(i).html(this.model.get('_items')[i].body);
+                    } else {
+                        this.$('.narrative-content-title-inner').eq(i).html(this.model.get('_items')[i].titleReduced);
+                        this.$('.narrative-content-body-inner').eq(i).html(this.model.get('_items')[i].bodyReduced);
+                    }
                 }
             }
         }
