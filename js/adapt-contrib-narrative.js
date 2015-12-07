@@ -15,6 +15,9 @@ define(function(require) {
             this.listenTo(Adapt, 'device:changed', this.reRender, this);
             this.listenTo(Adapt, 'device:resize', this.resizeControl, this);
             this.listenTo(Adapt, 'notify:closed', this.closeNotify, this);
+            // Listen for text change on audio extension
+            this.listenTo(Adapt, "audio:changeText", this.replaceText);
+
             this.setDeviceSize();
 
             // Checks to see if the narrative should be reset on revisit
@@ -85,6 +88,10 @@ define(function(require) {
                 this.$('.narrative-indicators').css({
                     marginLeft: '-' + marginLeft + 'px'
                 });
+            }
+
+            if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled) {
+                this.replaceText(Adapt.audio.textSize);
             }
         },
 
@@ -193,6 +200,14 @@ define(function(require) {
             this.$('.narrative-content-item').addClass('narrative-hidden').a11y_on(false).eq(stage).removeClass('narrative-hidden').a11y_on(true);
             this.$('.narrative-strapline-title').a11y_cntrl_enabled(false).eq(stage).a11y_cntrl_enabled(true);
 
+            // If enabled
+            if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled) {
+                if(Adapt.audio.textSize == 1) {
+                    this.$('.narrative-content-title-inner').eq(stage).html(this.model.get('_items')[stage].titleReduced);
+                    this.$('.narrative-content-body-inner').eq(stage).html(this.model.get('_items')[stage].bodyReduced);
+                }
+            }
+
             this.evaluateNavigation();
             this.evaluateCompletion();
 
@@ -290,9 +305,20 @@ define(function(require) {
         openPopup: function(event) {
             event.preventDefault();
             var currentItem = this.getCurrentItem(this.model.get('_stage'));
+
+            // Set popup text to default full size
+            var popupObject_title = currentItem.title;
+            var popupObject_body = currentItem.body;
+
+            // If reduced text is enabled and selected
+            if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled && Adapt.audio.textSize == 1) {
+                popupObject_title = currentItem.titleReduced;
+                popupObject_body = currentItem.bodyReduced;
+            }
+
             var popupObject = {
-                title: currentItem.title,
-                body: currentItem.body
+                title: popupObject_title,
+                body: popupObject_body
             };
 
             // Set the visited attribute for small and medium screen devices
@@ -379,6 +405,20 @@ define(function(require) {
                 this.on(this.completionEvent, _.bind(this.onCompletion, this));
             } else {
                 this.$('.component-widget').on('inview', _.bind(this.inview, this));
+            }
+        },
+
+        // Reduced text
+        replaceText: function(value) {
+            // If enabled
+            if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled) {
+                if(value == 0) {
+                    this.$('.component-title-inner').html(this.model.get('displayTitle')).a11y_text();
+                    this.$('.component-body-inner').html(this.model.get('body')).a11y_text();
+                } else {
+                    this.$('.component-title-inner').html(this.model.get('displayTitleReduced')).a11y_text();
+                    this.$('.component-body-inner').html(this.model.get('bodyReduced')).a11y_text();
+                }
             }
         }
 

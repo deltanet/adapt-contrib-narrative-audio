@@ -12,6 +12,11 @@
         "_hasNavigationInTextArea": false,
         "mobileInstruction": "This is optional instruction text that will be shown when viewed on mobile.",
         "_setCompletionOn":"allItems",
+        "displayTitleReduced": "Reduced title",
+        "bodyReduced": "Reduced text",
+        "_reducedText": {
+            "_isEnabled": true
+        },
         "_audio": {
             "_isEnabled": true,
             "_showControls": true,
@@ -26,7 +31,9 @@
         "_items": [
             {
                 "title": "Narrative stage 1 title",
+                "titleReduced": "Reduced title",
                 "body": "This is display text 1. If viewing on desktop or tablet, this text will appear to the right of the image. On mobile, you’ll need to select the plus icon to reveal this text.",
+                "bodyReduced": "Reduced text",
                 "_graphic": {
                     "src": "course/en/images/image-slider-1.jpg",
                     "alt": "First graphic"
@@ -39,7 +46,9 @@
             },
             {
                 "title": "Narrative stage 2 title",
+                "titleReduced": "Reduced title",
                 "body": "This is display text 2.",
+                "bodyReduced": "Reduced text",
                 "_graphic": {
                     "src": "course/en/images/image-slider-2.jpg",
                     "alt": "Second graphic"
@@ -52,7 +61,9 @@
             },
             {
                 "title": "Narrative stage 3 title",
+                "titleReduced": "Reduced title",
                 "body": "This is display text 3.",
+                "bodyReduced": "Reduced text",
                 "_graphic": {
                     "src": "course/en/images/image-slider-3.jpg",
                     "alt": "Third graphic"
