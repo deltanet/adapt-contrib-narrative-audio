@@ -59,6 +59,7 @@ define(function(require) {
 
         setupNarrative: function() {
             this.setDeviceSize();
+            if(!this.model.has('_items') || !this.model.get('_items').length) return;
             this.model.set('_marginDir', 'left');
             if (Adapt.config.get('_defaultDirection') == 'rtl') {
                 this.model.set('_marginDir', 'right');
@@ -187,7 +188,6 @@ define(function(require) {
 
         setStage: function(stage, initial) {
             this.model.set('_stage', stage);
-
             if (this.model.get('_isDesktop')) {
                 // Set the visited attribute for large screen devices
                 var currentItem = this.getCurrentItem(stage);
@@ -237,7 +237,7 @@ define(function(require) {
             var currentStage = this.model.get('_stage');
             var itemCount = this.model.get('_itemCount');
             if (currentStage == 0) {
-                this.$('.narrative-control-left').addClass('narrative-hidden');
+                this.$('.narrative-controls').addClass('narrative-hidden');
 
                 if (itemCount > 1) {
                     this.$('.narrative-control-right').removeClass('narrative-hidden');
