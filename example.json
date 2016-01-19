@@ -24,8 +24,8 @@
             "_channel": 0,
             "_location": "top-right",
             "_media": {
-                "mp3": "course/en/audio/***.mp3",
-                "ogg": "course/en/audio/***.ogg"
+                "desktop": "course/en/audio/***.mp3",
+                "mobile": "course/en/audio/***.mp3"
             }
         },
         "_items": [
@@ -40,8 +40,7 @@
                 },
                 "strapline": "Here is the first...",
                 "_audio": {
-                    "mp3": "course/en/audio/***.mp3",
-                    "ogg": "course/en/audio/***.ogg"
+                    "src": "course/en/audio/***.mp3"
                 }
             },
             {
@@ -55,8 +54,7 @@
                 },
                 "strapline": "Now comes the second...",
                 "_audio": {
-                    "mp3": "course/en/audio/***.mp3",
-                    "ogg": "course/en/audio/***.ogg"
+                    "src": "course/en/audio/***.mp3"
                 }
             },
             {
@@ -70,8 +68,7 @@
                 },
                 "strapline": "Third here!",
                 "_audio": {
-                    "mp3": "course/en/audio/***.mp3",
-                    "ogg": "course/en/audio/***.ogg"
+                    "src": "course/en/audio/***.mp3"
                 }
             }
         ]

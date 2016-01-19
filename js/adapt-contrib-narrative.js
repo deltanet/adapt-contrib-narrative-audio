@@ -320,11 +320,8 @@ define(function(require) {
 
             ///// Audio /////
             if (this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
-                // Determine which filetype to play
-                if (Adapt.audio.audioClip[this.model.get('_audio')._channel].canPlayType('audio/ogg')) this.audioFile = currentItem._audio.ogg;
-                if (Adapt.audio.audioClip[this.model.get('_audio')._channel].canPlayType('audio/mpeg')) this.audioFile = currentItem._audio.mp3;
                 // Trigger audio
-                Adapt.trigger('audio:playAudio', this.audioFile, this.model.get('_id'), this.model.get('_audio')._channel);
+                Adapt.trigger('audio:playAudio', currentItem._audio.src, this.model.get('_id'), this.model.get('_audio')._channel);
             }
             ///// End of Audio /////
         },
@@ -350,11 +347,8 @@ define(function(require) {
                 var currentItem = this.getCurrentItem(stage);
 
                 if (this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
-                    // Determine which filetype to play
-                    if (Adapt.audio.audioClip[this.model.get('_audio')._channel].canPlayType('audio/ogg')) this.audioFile = currentItem._audio.ogg;
-                    if (Adapt.audio.audioClip[this.model.get('_audio')._channel].canPlayType('audio/mpeg')) this.audioFile = currentItem._audio.mp3;
                     // Trigger audio
-                    Adapt.trigger('audio:playAudio', this.audioFile, this.model.get('_id'), this.model.get('_audio')._channel);
+                    Adapt.trigger('audio:playAudio', currentItem._audio.src, this.model.get('_id'), this.model.get('_audio')._channel);
                 }
             }
             ///// End of Audio /////
