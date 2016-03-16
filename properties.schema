@@ -37,6 +37,22 @@
       "validators": [],
       "help": "This is the mobile only instruction text"
     },
+    "displayTitleReduced": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "title": "Reduced Text Display Title",
+      "inputType": "Text",
+      "validators": []
+    },
+    "bodyReduced": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "title": "Reduced Text Body",
+      "inputType": "TextArea",
+      "validators": []
+    },
     "_hasNavigationInTextArea": {
       "type":"boolean",
       "required":true,
@@ -115,6 +131,22 @@
             "validators": ["required"],
             "help": ""
           }
+        }
+      }
+    },
+    "_reducedText": {
+      "type":"object",
+      "required":false,
+      "title": "Reduced Text Options",
+      "help": "The Audio extension must be installed for reduced text options to work",
+      "properties":{
+        "_isEnabled": {
+          "type":"boolean",
+          "required":false,
+          "default": true,
+          "title": "Reduced Text Enabled",
+          "inputType": { "type": "Boolean", "options": [false, true]},
+          "validators": []
         }
       }
     }
