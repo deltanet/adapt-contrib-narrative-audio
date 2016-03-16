@@ -3,7 +3,7 @@ define(function(require) {
     var ComponentView = require('coreViews/componentView');
     var Adapt = require('coreJS/adapt');
 
-    var Narrative = ComponentView.extend({
+    var NarrativeAudio = ComponentView.extend({
 
         events: {
             'click .narrative-strapline-title': 'openPopup',
@@ -421,8 +421,8 @@ define(function(require) {
 
     });
 
-    Adapt.register('narrative', Narrative);
+    Adapt.register('narrative-audio', NarrativeAudio);
 
-    return Narrative;
+    return NarrativeAudio;
 
 });

@@ -4,7 +4,7 @@
         "_classes": "",
         "_type":"component",
         "_layout": "full",
-        "_component": "narrative",
+        "_component": "narrative-audio",
         "title": "Narrative",
         "displayTitle": "Narrative",
         "body": "This is optional body text. Select the forward arrows to move through the narrative on a desktop, or swipe the images and select the plus icons to do so on mobile.",
@@ -16,17 +16,6 @@
         "bodyReduced": "Reduced text",
         "_reducedText": {
             "_isEnabled": true
-        },
-        "_audio": {
-            "_isEnabled": true,
-            "_showControls": true,
-            "_autoplay": true,
-            "_channel": 0,
-            "_location": "top-right",
-            "_media": {
-                "desktop": "course/en/audio/***.mp3",
-                "mobile": "course/en/audio/***.mp3"
-            }
         },
         "_items": [
             {
