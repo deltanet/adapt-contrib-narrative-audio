@@ -79,19 +79,19 @@ define(function(require) {
                 this.replaceInstructions();
             }
             this.setupEventListeners();
-            
-            // if hasNavigationInTextArea set margin left 
+
+            // if hasNavigationInTextArea set margin left
             var hasNavigationInTextArea = this.model.get('_hasNavigationInTextArea');
             if (hasNavigationInTextArea == true) {
                 var indicatorWidth = this.$('.narrative-indicators').width();
                 var marginLeft = indicatorWidth / 2;
-                
+
                 this.$('.narrative-indicators').css({
                     marginLeft: '-' + marginLeft + 'px'
                 });
             }
 
-            if (Adapt.config.get('_audio') && Adapt.config.get('_audio')._isReducedTextEnabled && this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled) {
+            if (this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
                 this.replaceText(Adapt.audio.textSize);
             }
         },
@@ -150,7 +150,7 @@ define(function(require) {
         replaceWithHotgraphic: function() {
             if (!Adapt.componentStore.hotgraphic) throw "Hotgraphic not included in build";
             var Hotgraphic = Adapt.componentStore.hotgraphic;
-            
+
             var model = this.prepareHotgraphicModel();
             var newHotgraphic = new Hotgraphic({ model: model });
             var $container = $(".component-container", $("." + this.model.get("_parentId")));
@@ -251,7 +251,6 @@ define(function(require) {
                     this.$('.narrative-control-right').removeClass('narrative-hidden');
                 }
             }
-
         },
 
         getNearestItemIndex: function() {
@@ -283,7 +282,7 @@ define(function(require) {
         evaluateCompletion: function() {
             if (this.getVisitedItems().length === this.model.get('_items').length) {
                 this.trigger('allItems');
-            } 
+            }
         },
 
         moveElement: function($element, deltaX) {
@@ -303,7 +302,7 @@ define(function(require) {
             var popupObject_body = currentItem.body;
 
             // If reduced text is enabled and selected
-            if (Adapt.config.get('_audio') && Adapt.config.get('_audio')._isReducedTextEnabled && this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled && Adapt.audio.textSize == 1) {
+            if (this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled && Adapt.audio.textSize == 1) {
                 popupObject_title = currentItem.titleReduced;
                 popupObject_body = currentItem.bodyReduced;
             }
@@ -319,7 +318,7 @@ define(function(require) {
             Adapt.trigger('notify:popup', popupObject);
 
             ///// Audio /////
-            if (Adapt.config.get('_audio') && Adapt.config.get('_audio')._isEnabled && this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
+            if (this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
                 // Trigger audio
                 Adapt.trigger('audio:playAudio', currentItem._audio.src, this.model.get('_id'), this.model.get('_audio')._channel);
             }
@@ -346,14 +345,14 @@ define(function(require) {
             if (Adapt.device.screenSize === 'large') {
                 var currentItem = this.getCurrentItem(stage);
 
-                if (Adapt.config.get('_audio') && Adapt.config.get('_audio')._isEnabled && this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
+                if (this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
                     // Trigger audio
                     Adapt.trigger('audio:playAudio', currentItem._audio.src, this.model.get('_id'), this.model.get('_audio')._channel);
                 }
             }
             ///// End of Audio /////
         },
-        
+
         onProgressClicked: function(event) {
             event.preventDefault();
             var clickedIndex = $(event.target).index();
@@ -397,23 +396,7 @@ define(function(require) {
         // Reduced text
         replaceText: function(value) {
             // If enabled
-            if (Adapt.config.get('_audio') && Adapt.config.get('_audio')._isReducedTextEnabled && this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled) {
-                // Change component title and body
-                if(value == 0) {
-                    if (this.model.get('displayTitle')) {
-                        this.$('.component-title-inner').html(this.model.get('displayTitle')).a11y_text();
-                    }
-                    if (this.model.get('body')) {
-                        this.$('.component-body-inner').html(this.model.get('body')).a11y_text();
-                    }
-                } else {
-                    if (this.model.get('displayTitleReduced')) {
-                        this.$('.component-title-inner').html(this.model.get('displayTitleReduced')).a11y_text();
-                    }
-                    if (this.model.get('bodyReduced')) {
-                        this.$('.component-body-inner').html(this.model.get('bodyReduced')).a11y_text();
-                    }
-                }
+            if (this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
                 // Change each items title and body
                 for (var i = 0; i < this.model.get('_items').length; i++) {
                     if(value == 0) {
@@ -426,7 +409,6 @@ define(function(require) {
                 }
             }
         }
-
     });
 
     Adapt.register('narrative-audio', NarrativeAudio);
