@@ -5,13 +5,13 @@
   "homepage": "https://github.com/deltanet/adapt-contrib-narrative-audio",
   "issues": "https://github.com/deltanet/adapt-contrib-narrative-audio/issues",
   "displayName" : "Narrative - Audio",
-  "component" : "narrative-audio",
+  "component" : "narrativeAudio",
   "assetFields" : [
     "_items[]._graphic.src",
     "_items[]._audio.src"
   ],
   "description": "A component that displays an image gallery with accompanying text, audio enabled.",
-  "main": "/js/adapt-contrib-narrative-audio.js",
+  "main": "/js/adapt-contrib-narrativeAudio.js",
   "keywords": [
     "adapt-plugin",
     "adapt-component"

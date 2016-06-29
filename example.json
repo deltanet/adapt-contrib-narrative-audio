@@ -4,7 +4,7 @@
         "_classes": "",
         "_type":"component",
         "_layout": "full",
-        "_component": "narrative-audio",
+        "_component": "narrativeAudio",
         "title": "Narrative",
         "displayTitle": "Narrative",
         "body": "This is optional body text. Select the forward arrows to move through the narrative on a desktop, or swipe the images and select the plus icons to do so on mobile.",

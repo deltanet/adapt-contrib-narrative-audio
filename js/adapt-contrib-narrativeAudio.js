@@ -148,8 +148,8 @@ define(function(require) {
         },
 
         replaceWithHotgraphic: function() {
-            if (!Adapt.componentStore.hotgraphic) throw "Hotgraphic not included in build";
-            var Hotgraphic = Adapt.componentStore.hotgraphic;
+            if (!Adapt.componentStore.hotgraphicAudio) throw "Hotgraphic not included in build";
+            var Hotgraphic = Adapt.componentStore.hotgraphicAudio;
 
             var model = this.prepareHotgraphicModel();
             var newHotgraphic = new Hotgraphic({ model: model });
@@ -164,7 +164,7 @@ define(function(require) {
 
         prepareHotgraphicModel: function() {
             var model = this.model;
-            model.set('_component', 'hotgraphic');
+            model.set('_component', 'hotgraphicAudio');
             model.set('body', model.get('originalBody'));
             model.set('instruction', model.get('originalInstruction'));
             return model;
@@ -411,7 +411,7 @@ define(function(require) {
         }
     });
 
-    Adapt.register('narrative-audio', NarrativeAudio);
+    Adapt.register('narrativeAudio', NarrativeAudio);
 
     return NarrativeAudio;
 
