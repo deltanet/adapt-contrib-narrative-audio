@@ -3,7 +3,7 @@ define(function(require) {
     var ComponentView = require('coreViews/componentView');
     var Adapt = require('coreJS/adapt');
 
-    var Narrative = ComponentView.extend({
+    var NarrativeAudio = ComponentView.extend({
 
         events: {
             'click .narrative-strapline-title': 'openPopup',
@@ -79,19 +79,19 @@ define(function(require) {
                 this.replaceInstructions();
             }
             this.setupEventListeners();
-            
-            // if hasNavigationInTextArea set margin left 
+
+            // if hasNavigationInTextArea set margin left
             var hasNavigationInTextArea = this.model.get('_hasNavigationInTextArea');
             if (hasNavigationInTextArea == true) {
                 var indicatorWidth = this.$('.narrative-indicators').width();
                 var marginLeft = indicatorWidth / 2;
-                
+
                 this.$('.narrative-indicators').css({
                     marginLeft: '-' + marginLeft + 'px'
                 });
             }
 
-            if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled) {
+            if (this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
                 this.replaceText(Adapt.audio.textSize);
             }
         },
@@ -148,9 +148,9 @@ define(function(require) {
         },
 
         replaceWithHotgraphic: function() {
-            if (!Adapt.componentStore.hotgraphic) throw "Hotgraphic not included in build";
-            var Hotgraphic = Adapt.componentStore.hotgraphic;
-            
+            if (!Adapt.componentStore.hotgraphicAudio) throw "Hotgraphic not included in build";
+            var Hotgraphic = Adapt.componentStore.hotgraphicAudio;
+
             var model = this.prepareHotgraphicModel();
             var newHotgraphic = new Hotgraphic({ model: model });
             var $container = $(".component-container", $("." + this.model.get("_parentId")));
@@ -164,7 +164,7 @@ define(function(require) {
 
         prepareHotgraphicModel: function() {
             var model = this.model;
-            model.set('_component', 'hotgraphic');
+            model.set('_component', 'hotgraphicAudio');
             model.set('body', model.get('originalBody'));
             model.set('instruction', model.get('originalInstruction'));
             return model;
@@ -251,7 +251,6 @@ define(function(require) {
                     this.$('.narrative-control-right').removeClass('narrative-hidden');
                 }
             }
-
         },
 
         getNearestItemIndex: function() {
@@ -283,7 +282,7 @@ define(function(require) {
         evaluateCompletion: function() {
             if (this.getVisitedItems().length === this.model.get('_items').length) {
                 this.trigger('allItems');
-            } 
+            }
         },
 
         moveElement: function($element, deltaX) {
@@ -303,7 +302,7 @@ define(function(require) {
             var popupObject_body = currentItem.body;
 
             // If reduced text is enabled and selected
-            if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled && Adapt.audio.textSize == 1) {
+            if (this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled && Adapt.audio.textSize == 1) {
                 popupObject_title = currentItem.titleReduced;
                 popupObject_body = currentItem.bodyReduced;
             }
@@ -353,7 +352,7 @@ define(function(require) {
             }
             ///// End of Audio /////
         },
-        
+
         onProgressClicked: function(event) {
             event.preventDefault();
             var clickedIndex = $(event.target).index();
@@ -397,15 +396,7 @@ define(function(require) {
         // Reduced text
         replaceText: function(value) {
             // If enabled
-            if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled) {
-                // Change component title and body
-                if(value == 0) {
-                    this.$('.component-title-inner').html(this.model.get('displayTitle')).a11y_text();
-                    this.$('.component-body-inner').html(this.model.get('body')).a11y_text();
-                } else {
-                    this.$('.component-title-inner').html(this.model.get('displayTitleReduced')).a11y_text();
-                    this.$('.component-body-inner').html(this.model.get('bodyReduced')).a11y_text();
-                }
+            if (this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
                 // Change each items title and body
                 for (var i = 0; i < this.model.get('_items').length; i++) {
                     if(value == 0) {
@@ -418,11 +409,10 @@ define(function(require) {
                 }
             }
         }
-
     });
 
-    Adapt.register('narrative', Narrative);
+    Adapt.register('narrativeAudio', NarrativeAudio);
 
-    return Narrative;
+    return NarrativeAudio;
 
 });
