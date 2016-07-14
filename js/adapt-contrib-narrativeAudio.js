@@ -52,7 +52,7 @@ define(function(require) {
                 this.model.set({_stage: 0});
 
                 _.each(this.model.get('_items'), function(item) {
-                    item.visited = false;
+                    item._isVisited = false;
                 });
             }
         },
@@ -102,7 +102,6 @@ define(function(require) {
             var marginRight = this.$('.narrative-slider-graphic').css('margin-right');
             var extraMargin = marginRight === '' ? 0 : parseInt(marginRight);
             var fullSlideWidth = (slideWidth + extraMargin) * slideCount;
-            var iconWidth = this.$('.narrative-popup-open').outerWidth();
 
             this.$('.narrative-slider-graphic').width(slideWidth);
             this.$('.narrative-strapline-header').width(slideWidth);
@@ -121,6 +120,7 @@ define(function(require) {
         },
 
         resizeControl: function() {
+            var wasDesktop = this.model.get('_isDesktop');
             this.setDeviceSize();
             _.once(this.replaceInstructions);
             this.calculateWidths();
@@ -157,6 +157,7 @@ define(function(require) {
 
             $container.append(newHotgraphic.$el);
             this.remove();
+            $.a11y_update();
             _.defer(function() {
                 Adapt.trigger('device:resize');
             });
@@ -191,7 +192,7 @@ define(function(require) {
             if (this.model.get('_isDesktop')) {
                 // Set the visited attribute for large screen devices
                 var currentItem = this.getCurrentItem(stage);
-                currentItem.visited = true;
+                currentItem._isVisited = true;
             }
 
             this.$('.narrative-progress:visible').removeClass('selected').eq(stage).addClass('selected');
@@ -207,7 +208,7 @@ define(function(require) {
                 if (this.model.get('_isDesktop')) {
                     if (!initial) this.$('.narrative-content-item').eq(stage).a11y_focus();
                 } else {
-                    if (!initial) this.$('.narrative-popup-open').a11y_focus();
+                    if (!initial) this.$('.narrative-strapline-title').a11y_focus();
                 }
             }, this));
         },
@@ -275,7 +276,7 @@ define(function(require) {
 
         getVisitedItems: function() {
             return _.filter(this.model.get('_items'), function(item) {
-                return item.visited;
+                return item._isVisited;
             });
         },
 
@@ -313,7 +314,7 @@ define(function(require) {
             };
 
             // Set the visited attribute for small and medium screen devices
-            currentItem.visited = true;
+            currentItem._isVisited = true;
 
             Adapt.trigger('notify:popup', popupObject);
 
@@ -386,7 +387,7 @@ define(function(require) {
 
         setupEventListeners: function() {
             this.completionEvent = (!this.model.get('_setCompletionOn')) ? 'allItems' : this.model.get('_setCompletionOn');
-            if (this.completionEvent !== 'inview') {
+            if (this.completionEvent !== 'inview' && this.model.get('_items').length > 1) {
                 this.on(this.completionEvent, _.bind(this.onCompletion, this));
             } else {
                 this.$('.component-widget').on('inview', _.bind(this.inview, this));
