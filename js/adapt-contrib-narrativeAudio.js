@@ -141,9 +141,9 @@ define(function(require) {
 
         replaceInstructions: function() {
             if (Adapt.device.screenSize === 'large') {
-                this.$('.narrative-instruction-inner').html(this.model.get('instruction')).a11y_text();
+                this.$('.narrativeAudio-instruction-inner').html(this.model.get('instruction')).a11y_text();
             } else if (this.model.get('mobileInstruction') && !this.model.get('_wasHotgraphic')) {
-                this.$('.narrative-instruction-inner').html(this.model.get('mobileInstruction')).a11y_text();
+                this.$('.narrativeAudio-instruction-inner').html(this.model.get('mobileInstruction')).a11y_text();
             }
         },
 
