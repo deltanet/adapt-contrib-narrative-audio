@@ -53,7 +53,7 @@ The attributes listed below are used in *components.json* to configure **Narrati
 On mobile devices, the narrative text is collapsed above the image. It is accessed by clicking an icon (+) next the to strapline.
 
 ----------------------------
-**Version number:**  2.0.5   
+**Version number:**  2.0.6   
 **Framework versions:** 2.0  
 **Author / maintainer:** Deltanet forked from [Adapt Core](https://github.com/adaptlearning/adapt-contrib-narrative)    
 **Accessibility support:** WAI AA   
