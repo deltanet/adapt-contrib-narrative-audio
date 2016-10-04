@@ -3,7 +3,7 @@ define(function(require) {
     var ComponentView = require('coreViews/componentView');
     var Adapt = require('coreJS/adapt');
 
-    var Narrative = ComponentView.extend({
+    var NarrativeAudio = ComponentView.extend({
 
         events: {
             'click .narrative-strapline-title': 'openPopup',
@@ -15,6 +15,9 @@ define(function(require) {
             this.listenTo(Adapt, 'device:changed', this.reRender, this);
             this.listenTo(Adapt, 'device:resize', this.resizeControl, this);
             this.listenTo(Adapt, 'notify:closed', this.closeNotify, this);
+            // Listen for text change on audio extension
+            this.listenTo(Adapt, "audio:changeText", this.replaceText);
+
             this.setDeviceSize();
 
             // Checks to see if the narrative should be reset on revisit
@@ -76,16 +79,20 @@ define(function(require) {
                 this.replaceInstructions();
             }
             this.setupEventListeners();
-            
-            // if hasNavigationInTextArea set margin left 
+
+            // if hasNavigationInTextArea set margin left
             var hasNavigationInTextArea = this.model.get('_hasNavigationInTextArea');
             if (hasNavigationInTextArea == true) {
                 var indicatorWidth = this.$('.narrative-indicators').width();
                 var marginLeft = indicatorWidth / 2;
-                
+
                 this.$('.narrative-indicators').css({
                     marginLeft: '-' + marginLeft + 'px'
                 });
+            }
+
+            if (this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
+                this.replaceText(Adapt.audio.textSize);
             }
         },
 
@@ -115,7 +122,7 @@ define(function(require) {
         resizeControl: function() {
             var wasDesktop = this.model.get('_isDesktop');
             this.setDeviceSize();
-            if (wasDesktop != this.model.get('_isDesktop')) this.replaceInstructions();
+            _.once(this.replaceInstructions);
             this.calculateWidths();
             this.evaluateNavigation();
         },
@@ -124,7 +131,7 @@ define(function(require) {
             if (this.model.get('_wasHotgraphic') && Adapt.device.screenSize == 'large') {
                 this.replaceWithHotgraphic();
             } else {
-                this.resizeControl();
+                this.replaceInstructions();
             }
         },
 
@@ -134,16 +141,16 @@ define(function(require) {
 
         replaceInstructions: function() {
             if (Adapt.device.screenSize === 'large') {
-                this.$('.narrative-instruction-inner').html(this.model.get('instruction')).a11y_text();
+                this.$('.narrativeAudio-instruction-inner').html(this.model.get('instruction')).a11y_text();
             } else if (this.model.get('mobileInstruction') && !this.model.get('_wasHotgraphic')) {
-                this.$('.narrative-instruction-inner').html(this.model.get('mobileInstruction')).a11y_text();
+                this.$('.narrativeAudio-instruction-inner').html(this.model.get('mobileInstruction')).a11y_text();
             }
         },
 
         replaceWithHotgraphic: function() {
-            if (!Adapt.componentStore.hotgraphic) throw "Hotgraphic not included in build";
-            var Hotgraphic = Adapt.componentStore.hotgraphic;
-            
+            if (!Adapt.componentStore.hotgraphicAudio) throw "Hotgraphic not included in build";
+            var Hotgraphic = Adapt.componentStore.hotgraphicAudio;
+
             var model = this.prepareHotgraphicModel();
             var newHotgraphic = new Hotgraphic({ model: model });
             var $container = $(".component-container", $("." + this.model.get("_parentId")));
@@ -158,7 +165,7 @@ define(function(require) {
 
         prepareHotgraphicModel: function() {
             var model = this.model;
-            model.set('_component', 'hotgraphic');
+            model.set('_component', 'hotgraphicAudio');
             model.set('body', model.get('originalBody'));
             model.set('instruction', model.get('originalInstruction'));
             return model;
@@ -245,7 +252,6 @@ define(function(require) {
                     this.$('.narrative-control-right').removeClass('narrative-hidden');
                 }
             }
-
         },
 
         getNearestItemIndex: function() {
@@ -277,7 +283,7 @@ define(function(require) {
         evaluateCompletion: function() {
             if (this.getVisitedItems().length === this.model.get('_items').length) {
                 this.trigger('allItems');
-            } 
+            }
         },
 
         moveElement: function($element, deltaX) {
@@ -291,15 +297,33 @@ define(function(require) {
         openPopup: function(event) {
             event.preventDefault();
             var currentItem = this.getCurrentItem(this.model.get('_stage'));
+
+            // Set popup text to default full size
+            var popupObject_title = currentItem.title;
+            var popupObject_body = currentItem.body;
+
+            // If reduced text is enabled and selected
+            if (this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled && Adapt.audio.textSize == 1) {
+                popupObject_title = currentItem.titleReduced;
+                popupObject_body = currentItem.bodyReduced;
+            }
+
             var popupObject = {
-                title: currentItem.title,
-                body: currentItem.body
+                title: popupObject_title,
+                body: popupObject_body
             };
 
             // Set the visited attribute for small and medium screen devices
             currentItem._isVisited = true;
 
             Adapt.trigger('notify:popup', popupObject);
+
+            ///// Audio /////
+            if (this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
+                // Trigger audio
+                Adapt.trigger('audio:playAudio', currentItem._audio.src, this.model.get('_id'), this.model.get('_audio')._channel);
+            }
+            ///// End of Audio /////
         },
 
         onNavigationClicked: function(event) {
@@ -316,8 +340,19 @@ define(function(require) {
             }
             stage = (stage + numberOfItems) % numberOfItems;
             this.setStage(stage);
+
+            ///// Audio /////
+            if (Adapt.device.screenSize === 'large') {
+                var currentItem = this.getCurrentItem(stage);
+
+                if (this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
+                    // Trigger audio
+                    Adapt.trigger('audio:playAudio', currentItem._audio.src, this.model.get('_id'), this.model.get('_audio')._channel);
+                }
+            }
+            ///// End of Audio /////
         },
-        
+
         onProgressClicked: function(event) {
             event.preventDefault();
             var clickedIndex = $(event.target).index();
@@ -356,12 +391,28 @@ define(function(require) {
             } else {
                 this.$('.component-widget').on('inview', _.bind(this.inview, this));
             }
-        }
+        },
 
+        // Reduced text
+        replaceText: function(value) {
+            // If enabled
+            if (this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
+                // Change each items title and body
+                for (var i = 0; i < this.model.get('_items').length; i++) {
+                    if(value == 0) {
+                        this.$('.narrative-content-title-inner').eq(i).html(this.model.get('_items')[i].title);
+                        this.$('.narrative-content-body-inner').eq(i).html(this.model.get('_items')[i].body);
+                    } else {
+                        this.$('.narrative-content-title-inner').eq(i).html(this.model.get('_items')[i].titleReduced);
+                        this.$('.narrative-content-body-inner').eq(i).html(this.model.get('_items')[i].bodyReduced);
+                    }
+                }
+            }
+        }
     });
 
-    Adapt.register('narrative', Narrative);
+    Adapt.register('narrativeAudio', NarrativeAudio);
 
-    return Narrative;
+    return NarrativeAudio;
 
 });

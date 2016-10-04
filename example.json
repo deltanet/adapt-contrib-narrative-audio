@@ -4,7 +4,7 @@
         "_classes": "",
         "_type":"component",
         "_layout": "full",
-        "_component": "narrative",
+        "_component": "narrativeAudio",
         "title": "Narrative",
         "displayTitle": "Narrative",
         "body": "This is optional body text. Select the forward arrows to move through the narrative on a desktop, or swipe the images and select the plus icons to do so on mobile.",
@@ -15,30 +15,45 @@
         "_items": [
             {
                 "title": "Narrative stage 1 title",
+                "titleReduced": "Reduced title",
                 "body": "This is display text 1. If viewing on desktop or tablet, this text will appear to the right of the image. On mobile, you’ll need to select the plus icon to reveal this text.",
+                "bodyReduced": "Reduced text",
                 "_graphic": {
                     "src": "course/en/images/image-slider-1.jpg",
                     "alt": "First graphic"
                 },
-                "strapline": "Here is the first..."
+                "strapline": "Here is the first...",
+                "_audio": {
+                    "src": "course/en/audio/***.mp3"
+                }
             },
             {
                 "title": "Narrative stage 2 title",
+                "titleReduced": "Reduced title",
                 "body": "This is display text 2.",
+                "bodyReduced": "Reduced text",
                 "_graphic": {
                     "src": "course/en/images/image-slider-2.jpg",
                     "alt": "Second graphic"
                 },
-                "strapline": "Now comes the second..."
+                "strapline": "Now comes the second...",
+                "_audio": {
+                    "src": "course/en/audio/***.mp3"
+                }
             },
             {
                 "title": "Narrative stage 3 title",
+                "titleReduced": "Reduced title",
                 "body": "This is display text 3.",
+                "bodyReduced": "Reduced text",
                 "_graphic": {
                     "src": "course/en/images/image-slider-3.jpg",
                     "alt": "Third graphic"
                 },
-                "strapline": "Third here!"
+                "strapline": "Third here!",
+                "_audio": {
+                    "src": "course/en/audio/***.mp3"
+                }
             }
         ]
     }
