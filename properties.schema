@@ -40,6 +40,15 @@
       "help": "This is the mobile only instruction text",
       "translatable": true
     },
+    "_isResetOnRevisit": {
+      "type":"boolean",
+      "required":true,
+      "default": false,
+      "title": "Reset on revisit",
+      "inputType": {"type": "Boolean", "options": [false, true]},
+      "validators": [],
+      "help": "If set to 'true', the first item will show on revisit, if 'false' the item the user last viewed will be displayed on revisit"
+    },
     "_hasNavigationInTextArea": {
       "type":"boolean",
       "required":true,
