@@ -86,11 +86,31 @@
             "help": "",
             "translatable": true
           },
+          "titleReduced": {
+            "type":"string",
+            "required": false,
+            "default": "",
+            "title": "Reduced text narrative display title",
+            "inputType": "Text",
+            "validators": [],
+            "help": "",
+            "translatable": true
+          },
           "body": {
             "type":"string",
             "required": false,
             "default": "",
             "title": "Narrative main text",
+            "inputType": "TextArea",
+            "validators": [],
+            "help": "",
+            "translatable": true
+          },
+          "bodyReduced": {
+            "type":"string",
+            "required": false,
+            "default": "",
+            "title": "Reduced text narrative main text",
             "inputType": "TextArea",
             "validators": [],
             "help": "",
@@ -130,6 +150,21 @@
             "validators": ["required"],
             "help": "",
             "translatable": true
+          },
+          "_audio": {
+            "type": "object",
+            "required": false,
+            "properties": {
+              "src": {
+                "type": "string",
+                "required": false,
+                "default": "",
+                "title": "Narrative item Audio",
+                "inputType": "Asset:audio",
+                "validators": [],
+                "help": "Optional audio for this item"
+              }
+            }
           }
         }
       }
