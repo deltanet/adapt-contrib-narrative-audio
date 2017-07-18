@@ -82,17 +82,6 @@ define(function(require) {
             }
             this.setupEventListeners();
 
-            // if hasNavigationInTextArea set margin left
-            var hasNavigationInTextArea = this.model.get('_hasNavigationInTextArea');
-            if (hasNavigationInTextArea == true) {
-                var indicatorWidth = this.$('.narrative-indicators').width();
-                var marginLeft = indicatorWidth / 2;
-
-                this.$('.narrative-indicators').css({
-                    marginLeft: '-' + marginLeft + 'px'
-                });
-            }
-
             if (this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
                 this.replaceText(Adapt.audio.textSize);
             }

@@ -1,5 +1,5 @@
 {
-  "type":"object",
+  "type": "object",
   "$schema": "http://json-schema.org/draft-04/schema",
   "id": "http://jsonschema.net",
   "$ref": "http://localhost/plugins/content/component/model.schema",
@@ -50,17 +50,17 @@
       "help": "If set to 'true', the first item will show on revisit, if 'false' the item the user last viewed will be displayed on revisit"
     },
     "_hasNavigationInTextArea": {
-      "type":"boolean",
-      "required":true,
+      "type": "boolean",
+      "required": true,
       "default": true,
       "title": "Move navigation to text area",
-      "inputType": {"type": "Boolean", "options": [false, true]},
+      "inputType": "Checkbox",
       "validators": [],
-      "help": "If set to 'true', all navigation elements will be moved to the text area"
+      "help": "If enabled, all navigation elements will be moved to the text area"
     },
     "_setCompletionOn": {
-      "type":"string",
-      "required":true,
+      "type": "string",
+      "required": true,
       "enum": ["inview", "allItems"],
       "default": "inview",
       "title": "Set Completion of Narrative on",
@@ -69,15 +69,15 @@
       "help": "This tells Adapt when to set the narrative to complete"
     },
     "_items": {
-      "type":"array",
-      "required":false,
+      "type": "array",
+      "required": false,
       "title": "Narrative items",
       "items": {
-        "type":"object",
-        "required":false,
+        "type": "object",
+        "required": false,
         "properties":{
           "title": {
-            "type":"string",
+            "type": "string",
             "required": false,
             "default": "",
             "title": "Narrative display title",
@@ -97,7 +97,7 @@
             "translatable": true
           },
           "body": {
-            "type":"string",
+            "type": "string",
             "required": false,
             "default": "",
             "title": "Narrative main text",
@@ -117,11 +117,11 @@
             "translatable": true
           },
           "_graphic": {
-            "type":"object",
+            "type": "object",
             "title": "Narrative graphic",
             "properties":{
               "src": {
-                "type":"string",
+                "type": "string",
                 "required": true,
                 "default": "",
                 "title": "Select Graphic",
@@ -130,7 +130,7 @@
                 "help": ""
               },
               "alt": {
-                "type":"string",
+                "type": "string",
                 "required": false,
                 "default": "",
                 "title": "Alternative Text",
@@ -138,11 +138,20 @@
                 "validators": [],
                 "help": "Alternative text for this items image",
                 "translatable": true
+              },
+              "attribution": {
+                "type": "string",
+                "required": false,
+                "default": "",
+                "inputType": "Text",
+                "validators": [],
+                "help": "Text to be displayed as an attribution",
+                "translatable": true
               }
             }
           },
           "strapline": {
-            "type":"string",
+            "type": "string",
             "required": true,
             "default": "",
             "title": "Narrative strapline",
