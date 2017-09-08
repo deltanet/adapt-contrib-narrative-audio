@@ -56,7 +56,7 @@ On mobile devices, the narrative text is collapsed above the image. It is access
 
 ----------------------------
 **Version number:**  2.0.12   
-**Framework versions:** 2.0  
+**Framework versions:** 2+  
 **Author / maintainer:** Deltanet forked from [Adapt Core](https://github.com/adaptlearning/adapt-contrib-narrative)    
 **Accessibility support:** WAI AA   
 **RTL support:** yes  
