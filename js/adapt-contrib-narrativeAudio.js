@@ -396,10 +396,10 @@ define(function(require) {
                 for (var i = 0; i < this.model.get('_items').length; i++) {
                     if(value == 0) {
                         this.$('.narrative-content-title-inner').eq(i).html(this.model.get('_items')[i].title);
-                        this.$('.narrative-content-body-inner').eq(i).html(this.model.get('_items')[i].body.a11y_text());
+                        this.$('.narrative-content-body-inner').eq(i).html(this.model.get('_items')[i].body).a11y_text();
                     } else {
                         this.$('.narrative-content-title-inner').eq(i).html(this.model.get('_items')[i].titleReduced);
-                        this.$('.narrative-content-body-inner').eq(i).html(this.model.get('_items')[i].bodyReduced.a11y_text());
+                        this.$('.narrative-content-body-inner').eq(i).html(this.model.get('_items')[i].bodyReduced).a11y_text();
                     }
                 }
             }
