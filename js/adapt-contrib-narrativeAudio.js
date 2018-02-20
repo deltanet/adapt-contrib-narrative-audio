@@ -406,12 +406,15 @@ define(function(require) {
         },
 
         playAudio: function(audioClip, id, channel) {
+
+          if (audioClip === "") return;
+
           // Check if notify is visible
           // If it is then do not play audio as something else may have triggered the audio, e.g. adapt-icon-popup
           if ($('body').children('.notify').css('visibility') == 'visible') {
               return;
           }
-          
+
           if(id == this.model.get("_id")) {
 
             var itemNumber = this.model.get('_stage');
