@@ -19,6 +19,7 @@
                 "titleReduced": "Reduced title",
                 "body": "This is display text 1. If viewing on desktop or tablet, this text will appear to the right of the image. On mobile, you’ll need to select the plus icon to reveal this text.",
                 "bodyReduced": "Reduced text",
+                "instruction": "",
                 "_graphic": {
                     "src": "course/en/images/image-slider-1.jpg",
                     "alt": "First graphic",
@@ -34,6 +35,7 @@
                 "titleReduced": "Reduced title",
                 "body": "This is display text 2.",
                 "bodyReduced": "Reduced text",
+                "instruction": "",
                 "_graphic": {
                     "src": "course/en/images/image-slider-2.jpg",
                     "alt": "Second graphic",
@@ -49,6 +51,7 @@
                 "titleReduced": "Reduced title",
                 "body": "This is display text 3.",
                 "bodyReduced": "Reduced text",
+                "instruction": "",
                 "_graphic": {
                     "src": "course/en/images/image-slider-3.jpg",
                     "alt": "Third graphic",

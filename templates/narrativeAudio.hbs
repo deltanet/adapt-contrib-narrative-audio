@@ -17,6 +17,13 @@
                             {{{a11y_text body}}}
                         </div>
                     </div>
+                    {{#if instruction}}
+                    <div class="narrative-content-instruction">
+                        <div class="narrative-content-instruction-inner">
+                            {{{a11y_text instruction}}}
+                        </div>
+                    </div>
+                    {{/if}}
                 </div>
                 {{/each}}
                 <div class="narrative-controls-container clearfix">

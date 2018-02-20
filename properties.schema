@@ -116,6 +116,15 @@
             "help": "",
             "translatable": true
           },
+          "instruction": {
+            "type": "string",
+            "required": false,
+            "default": "",
+            "inputType": "Text",
+            "validators": [],
+            "help": "This is the instruction text",
+            "translatable": true
+          },
           "_graphic": {
             "type": "object",
             "title": "Narrative graphic",
