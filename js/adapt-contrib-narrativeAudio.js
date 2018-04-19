@@ -310,7 +310,9 @@ define(function(require) {
             Adapt.trigger('notify:popup', popupObject);
 
             ///// Audio /////
-            if (this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
+            if(!Adapt.audio) return;
+
+            if (this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status == 1) {
               // Reset onscreen id
               Adapt.audio.audioClip[this.model.get('_audio')._channel].onscreenID = "";
               // Trigger audio
@@ -335,10 +337,12 @@ define(function(require) {
             this.setStage(stage);
 
             ///// Audio /////
+            if(!Adapt.audio) return;
+
             if (Adapt.device.screenSize === 'large') {
                 var currentItem = this.getCurrentItem(stage);
 
-                if (this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
+                if (this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status == 1) {
                   // Reset onscreen id
                   Adapt.audio.audioClip[this.model.get('_audio')._channel].onscreenID = "";
                   // Trigger audio
@@ -421,7 +425,7 @@ define(function(require) {
             var currentItem = this.getCurrentItem(itemNumber);
 
             if (itemNumber>0 && (Adapt.device.screenSize === 'large')) {
-              if (this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[channel].status==1) {
+              if (this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[channel].status == 1) {
                 Adapt.audio.audioClip[channel].pause();
                 Adapt.audio.audioClip[channel].src = currentItem._audio.src;
                 // Only play if prompt is not open
