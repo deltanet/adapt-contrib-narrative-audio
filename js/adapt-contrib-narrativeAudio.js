@@ -82,7 +82,7 @@ define(function(require) {
             }
             this.setupEventListeners();
 
-            if (this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
+            if (Adapt.audio && this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
                 this.replaceText(Adapt.audio.textSize);
             }
         },
@@ -294,7 +294,7 @@ define(function(require) {
             var popupObject_body = currentItem.body;
 
             // If reduced text is enabled and selected
-            if (this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled && Adapt.audio.textSize == 1) {
+            if (Adapt.audio && this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled && Adapt.audio.textSize == 1) {
                 popupObject_title = currentItem.titleReduced;
                 popupObject_body = currentItem.bodyReduced;
             }
