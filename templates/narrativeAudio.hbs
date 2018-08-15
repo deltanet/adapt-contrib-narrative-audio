@@ -9,18 +9,18 @@
                     {{#if _graphic.alt}}{{{a11y_aria_label _graphic.alt}}}{{/if}}
                     <div class="narrative-content-title">
                         <div class="narrative-content-title-inner accessible-text-block h5" role="heading" aria-level="5" tabindex="0">
-                            {{{title}}}
+                            {{{compile title}}}
                         </div>
                     </div>
                     <div class="narrative-content-body">
                         <div class="narrative-content-body-inner">
-                            {{{a11y_text body}}}
+                            {{{compile_a11y_text body}}}
                         </div>
                     </div>
                     {{#if instruction}}
                     <div class="narrative-content-instruction">
                         <div class="narrative-content-instruction-inner">
-                            {{{a11y_text instruction}}}
+                            {{{compile_a11y_text instruction}}}
                         </div>
                     </div>
                     {{/if}}
