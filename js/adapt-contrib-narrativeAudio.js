@@ -17,8 +17,6 @@ define(function(require) {
             this.listenTo(Adapt, 'notify:closed', this.closeNotify, this);
             // Listen for text change on audio extension
             this.listenTo(Adapt, "audio:changeText", this.replaceText);
-            // Listen for audio trigger on main audio extension
-            this.listenTo(Adapt, "audio:playAudio", this.playAudio);
 
             this.setDeviceSize();
 
@@ -407,35 +405,6 @@ define(function(require) {
                     }
                 }
             }
-        },
-
-        playAudio: function(audioClip, id, channel) {
-
-          if (audioClip === "") return;
-
-          // Check if notify is visible
-          // If it is then do not play audio as something else may have triggered the audio, e.g. adapt-icon-popup
-          if ($('body').children('.notify').css('visibility') == 'visible') {
-              return;
-          }
-
-          if(id == this.model.get("_id")) {
-
-            var itemNumber = this.model.get('_stage');
-            var currentItem = this.getCurrentItem(itemNumber);
-
-            if (itemNumber>0 && (Adapt.device.screenSize === 'large')) {
-              if (this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[channel].status == 1) {
-                Adapt.audio.audioClip[channel].pause();
-                Adapt.audio.audioClip[channel].src = currentItem._audio.src;
-                // Only play if prompt is not open
-                if(Adapt.audio.promptIsOpen == false) {
-                  setTimeout(function() {Adapt.audio.audioClip[channel].play();},500);
-                  Adapt.audio.audioClip[channel].isPlaying = true;
-                }
-              }
-            }
-          }
         }
 
     });
