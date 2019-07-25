@@ -1,5 +1,5 @@
-.mode-large.narrative-component {
-    .narrative-slide-container {
+.mode-large.narrativeAudio-component {
+    .narrativeAudio-slide-container {
         width: 50%;
         margin-right: 3%;
         float: left;
@@ -10,17 +10,17 @@
         }
     }
 
-    .narrative-slider-graphic {
+    .narrativeAudio-slider-graphic {
         margin-right: 0;
         width: 50%;
     }
 
-    .narrative-strapline {
+    .narrativeAudio-strapline {
         display:none;
     }
 
-    .narrative-content-inner {
-        .narrative-controls {
+    .narrativeAudio-content-inner {
+        .narrativeAudio-controls {
             position: static;
             display: none;
             margin-top: 0px;
@@ -32,46 +32,46 @@
                 margin: 0px;
             }
         }
-        .narrative-indicators {
+        .narrativeAudio-indicators {
             display: none;
             position: relative;
             top: -4px;
         }
-        .narrative-progress {
+        .narrativeAudio-progress {
             background-color: @item-color;
             &.selected {
                 background-color: @item-color-selected;
             }
         }
-        .narrative-content-item.narrative-hidden {
+        .narrativeAudio-content-item.narrativeAudio-hidden {
                 display: none;
         }
     }
 
-    .narrative-text-controls {
-        .narrative-content-inner {
+    .narrativeAudio-text-controls {
+        .narrativeAudio-content-inner {
             position: relative;
-            .narrative-controls-container {
+            .narrativeAudio-controls-container {
                 position: absolute;
                 width: 100%;
                 left: 0px;
                 top: 10px;
                 display: block;
             }
-            .narrative-controls {
+            .narrativeAudio-controls {
                 margin-bottom: 0px;
                 display: inline-block;
-                &.narrative-hidden {
+                &.narrativeAudio-hidden {
                     visibility: hidden;
                 }
             }
-            .narrative-control-left {
+            .narrativeAudio-control-left {
                 float:left;
             }
-            .narrative-control-right {
+            .narrativeAudio-control-right {
                 float: right;
             }
-            .narrative-indicators {
+            .narrativeAudio-indicators {
                 display: inline-block;
                 width: auto;
                 position: absolute;
@@ -81,11 +81,11 @@
             }
         }
 
-        .narrative-slide-container {
-            .narrative-controls {
+        .narrativeAudio-slide-container {
+            .narrativeAudio-controls {
                 display: none;
             }
-            .narrative-indicators {
+            .narrativeAudio-indicators {
                 display: none;
             }
         }
@@ -93,9 +93,9 @@
 }
 
 
-.narrative-component {
+.narrativeAudio-component {
 
-    .narrative-content {
+    .narrativeAudio-content {
         width: 46%;
         background-color: @item-color;
         color: @item-text-color;
@@ -105,15 +105,15 @@
         }
     }
 
-    .narrative-content-inner {
+    .narrativeAudio-content-inner {
         padding:20px;
     }
 
-    &.mode-small .narrative-content {
+    &.mode-small .narrativeAudio-content {
         display:none;
     }
 
-    .narrative-content-instruction {
+    .narrativeAudio-content-instruction {
         font-weight: bold;
         margin-bottom: @component-instruction-margin-bottom;
 
@@ -122,7 +122,7 @@
         }
   	}
 
-    .narrative-slide-container {
+    .narrativeAudio-slide-container {
         width: 100%;
         position: relative;
         overflow-x: hidden;
@@ -132,7 +132,7 @@
         }
     }
 
-    .narrative-slider-graphic {
+    .narrativeAudio-slider-graphic {
         position: relative;
         float: left;
         .dir-rtl & {
@@ -140,11 +140,11 @@
         }
     }
 
-    .narrative-indicators {
+    .narrativeAudio-indicators {
         text-align: center;
     }
 
-    .narrative-progress {
+    .narrativeAudio-progress {
         width: (@icon-size/2);
         height: (@icon-size/2);
         display: inline-block;
@@ -158,7 +158,7 @@
         }
     }
 
-    .narrative-controls {
+    .narrativeAudio-controls {
         display: block;
         width: (@icon-size*2);
         height: (@icon-size*2);
@@ -178,12 +178,12 @@
             margin: (@icon-size/2);
             color: @item-text-color;
         }
-        &.narrative-hidden {
+        &.narrativeAudio-hidden {
             visibility: hidden;
         }
     }
 
-    .narrative-control-left {
+    .narrativeAudio-control-left {
         left: 0;
 
         .dir-rtl & {
@@ -192,7 +192,7 @@
         }
     }
 
-    .narrative-control-right {
+    .narrativeAudio-control-right {
         right: 0;
 
         .dir-rtl & {
@@ -201,21 +201,21 @@
         }
     }
 
-    .narrative-strapline {
+    .narrativeAudio-strapline {
         height: auto;
         position: relative;
     }
 
-    .narrative-strapline-header {
+    .narrativeAudio-strapline-header {
         overflow: hidden;
         position: relative;
     }
 
-    .narrative-strapline-header-inner {
+    .narrativeAudio-strapline-header-inner {
         position: relative;
     }
 
-    .narrative-strapline-title {
+    .narrativeAudio-strapline-title {
         position: relative;
         float: left;
         text-decoration: none;
@@ -253,7 +253,7 @@
         }
     }
 
-    .narrative-strapline-title-inner {
+    .narrativeAudio-strapline-title-inner {
         padding-left: (@icon-size/2);
         padding-right: (@item-padding-left + @item-padding-right + @icon-size);
         padding-top: 10px;
@@ -269,7 +269,7 @@
         }
     }
 
-    .narrative-popup-open {
+    .narrativeAudio-popup-open {
         display: block;
         position: absolute;
         top:0;
@@ -295,13 +295,13 @@
         line-height: 1em;
     }
 
-    .narrative-hidden {
+    .narrativeAudio-hidden {
         visibility: hidden;
     }
 
     &:not(.disable-animation) {
-        .narrative-slider,
-        .narrative-strapline-header-inner {
+        .narrativeAudio-slider,
+        .narrativeAudio-strapline-header-inner {
             transition: transform 400ms ease-in-out;
         }
     }
