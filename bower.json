@@ -1,7 +1,7 @@
 {
   "name": "adapt-contrib-narrative-audio",
-  "version": "2.1.6",
-  "framework": "^2.0.4",
+  "version": "3.0.0",
+  "framework": ">=4",
   "homepage": "https://github.com/deltanet/adapt-contrib-narrative-audio",
   "issues": "https://github.com/deltanet/adapt-contrib-narrative-audio/issues",
   "displayName" : "Narrative - Audio",
@@ -12,5 +12,5 @@
     "adapt-plugin",
     "adapt-component"
   ],
-  "license": "GPL-3.0"
+  "license": "GPLv3"
 }
