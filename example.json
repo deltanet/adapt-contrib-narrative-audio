@@ -12,6 +12,7 @@
         "mobileInstruction": "This is optional instruction text that will be shown when viewed on mobile.",
         "_isResetOnRevisit": false,
         "_hasNavigationInTextArea": false,
+        "_comment": "setCompletionOn = inview | allItems",
         "_setCompletionOn":"allItems",
         "_items": [
             {

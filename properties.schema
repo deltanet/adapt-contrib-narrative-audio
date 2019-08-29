@@ -7,7 +7,7 @@
     "ariaRegion": {
       "type": "string",
       "required": true,
-      "default": "This component displays an image gallery with accompanying text. Use the next and back navigation controls to work through the narrative.",
+      "default": "Slide show. Select the next button to progress.",
       "inputType": "Text",
       "validators": [],
       "translatable": true
@@ -52,7 +52,7 @@
     "_hasNavigationInTextArea": {
       "type": "boolean",
       "required": true,
-      "default": true,
+      "default": false,
       "title": "Move navigation to text area",
       "inputType": "Checkbox",
       "validators": [],
@@ -62,11 +62,14 @@
       "type": "string",
       "required": true,
       "enum": ["inview", "allItems"],
-      "default": "inview",
-      "title": "Set Completion of Narrative on",
-      "inputType": {"type": "Select", "options":["inview", "allItems"]},
+      "default": "allItems",
+      "title": "Set completion on",
+      "inputType": {
+        "type": "Select",
+        "options": ["inview", "allItems"]
+      },
       "validators": ["required"],
-      "help": "This tells Adapt when to set the narrative to complete"
+      "help": "Whether completion is based on the learner having viewed all the narrative items - or just having viewed the component"
     },
     "_items": {
       "type": "array",
@@ -95,6 +98,15 @@
             "validators": [],
             "help": "",
             "translatable": true
+          },
+          "_ariaLevel": {
+            "type": "number",
+            "required": true,
+            "default": 0,
+            "title": "Narrative title level",
+            "inputType": "Number",
+            "validators": ["required", "number"],
+            "help": "Aria level for title"
           },
           "body": {
             "type": "string",

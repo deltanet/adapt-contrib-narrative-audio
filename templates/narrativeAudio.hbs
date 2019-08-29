@@ -1,53 +1,52 @@
-{{! Maintainers - Brian Quinn}}
-<div class="narrative-inner component-inner" role="region" aria-label="{{_globals._components._narrative.ariaRegion}}">
+<div class="narrativeAudio-inner component-inner">
     {{> component this}}
-    <div class="narrative-widget component-widget {{#if _hasNavigationInTextArea}}narrative-text-controls{{/if}}">
-        <div class="narrative-content">
-            <div class="narrative-content-inner">
+    <div class="narrativeAudio-widget component-widget {{#if _hasNavigationInTextArea}}narrativeAudio-text-controls{{/if}}">
+        <div class="narrativeAudio-content">
+            <div class="narrativeAudio-content-inner">
                 {{#each _items}}
-                <div class="narrative-content-item">
-                    {{#if _graphic.alt}}{{{a11y_aria_label _graphic.alt}}}{{/if}}
-                    <div class="narrative-content-title">
-                        <div class="narrative-content-title-inner accessible-text-block h5" role="heading" aria-level="5" tabindex="0">
-                            {{{compile title}}}
+                <div class="narrativeAudio-content-item {{#if _isVisited}}visited{{/if}}" data-index="{{@index}}">
+                    <div class="narrativeAudio-content-title">
+                        <div class="narrativeAudio-content-title-inner" {{a11y_attrs_heading 'componentItem'}}>
+                            {{{title}}}
                         </div>
                     </div>
-                    <div class="narrative-content-body">
-                        <div class="narrative-content-body-inner">
-                            {{{compile_a11y_text body}}}
+                    {{#if _graphic.alt}}{{{a11y_aria_image _graphic.alt}}}{{/if}}
+                    <div class="narrativeAudio-content-body">
+                        <div class="narrativeAudio-content-body-inner">
+                            {{{compile body}}}
                         </div>
                     </div>
                     {{#if instruction}}
-                    <div class="narrative-content-instruction">
-                        <div class="narrative-content-instruction-inner">
-                            {{{compile_a11y_text instruction}}}
+                    <div class="narrativeAudio-content-instruction">
+                        <div class="narrativeAudio-content-instruction-inner">
+                            {{{compile instruction}}}
                         </div>
                     </div>
                     {{/if}}
                 </div>
                 {{/each}}
-                <div class="narrative-controls-container clearfix">
-                    <div class="narrative-indicators">
+                <div class="narrativeAudio-controls-container clearfix">
+                    <div class="narrativeAudio-indicators">
                         {{#each _items}}
-                        <div class="narrative-progress component-item-color component-item-border"></div>
+                        <div class="narrativeAudio-progress component-item-color component-item-border {{#if _isVisited}}visited{{/if}}" data-index="{{@index}}"></div>
                         {{/each}}
                     </div>
-                    <button class="base narrative-controls narrative-control-left" role="button" aria-label="{{_globals._accessibility._ariaLabels.previous}}">
+                    <button class="base narrativeAudio-controls narrativeAudio-control-left" aria-label="{{_globals._accessibility._ariaLabels.previous}}">
                         <div class="icon icon-controls-left"></div>
                     </button>
-                    <button class="base narrative-controls narrative-control-right" role="button" aria-label="{{_globals._accessibility._ariaLabels.next}}">
+                    <button class="base narrativeAudio-controls narrativeAudio-control-right" aria-label="{{_globals._accessibility._ariaLabels.next}}">
                         <div class="icon icon-controls-right"></div>
                     </button>
                 </div>
             </div>
         </div>
-        <div class="narrative-strapline">
-            <div class="narrative-strapline-header">
-                <div class="narrative-strapline-header-inner clearfix">
+        <div class="narrativeAudio-strapline">
+            <div class="narrativeAudio-strapline-header">
+                <div class="narrativeAudio-strapline-header-inner clearfix" style="width: {{_totalWidth}}%">
                     <div></div>
                     {{#each _items}}
-                    <button role="button" class="base narrative-strapline-title" aria-label="{{{strapline}}}">
-                        <div class="narrative-strapline-title-inner accessible-text-block h5">
+                    <button class="base narrativeAudio-strapline-title {{#if _isVisited}}visited{{/if}}" aria-label="{{{strapline}}}" style="width: {{../_itemWidth}}%" data-index="{{@index}}">
+                        <div class="narrativeAudio-strapline-title-inner h5">
                             {{{strapline}}}
                         </div>
                         <div class="icon icon-plus"></div>
@@ -57,29 +56,32 @@
                 </div>
             </div>
         </div>
-        <div class="narrative-slide-container">
-            <button class="base narrative-controls narrative-control-left" role="button" aria-label="{{_globals._accessibility._ariaLabels.previous}}">
+        <div class="narrativeAudio-slide-container">
+
+            <button class="base narrativeAudio-controls narrativeAudio-control-left" aria-label="{{_globals._accessibility._ariaLabels.previous}}">
                 <div class="icon icon-controls-left"></div>
             </button>
-            <button class="base narrative-controls narrative-control-right" role="button" aria-label="{{_globals._accessibility._ariaLabels.next}}">
+            <button class="base narrativeAudio-controls narrativeAudio-control-right" aria-label="{{_globals._accessibility._ariaLabels.next}}">
                 <div class="icon icon-controls-right"></div>
             </button>
-            <div class="narrative-slider clearfix">
+
+            <div class="narrativeAudio-slider clearfix" style="width: {{_totalWidth}}%">
                 {{#each _items}}
-                <div class="narrative-slider-graphic {{#if _isVisited}}visited{{/if}}">
-                    <img src="{{_graphic.src}}" />
+                <div class="narrativeAudio-slider-graphic {{#if _isVisited}}visited{{/if}}" style="width: {{../_itemWidth}}%" data-index="{{@index}}">
+                    <img src="{{_graphic.src}}" aria-hidden="true" />
                     {{#if _graphic.attribution}}
                         <div class="graphic-attribution">{{{_graphic.attribution}}}</div>
                     {{/if}}
                 </div>
                 {{/each}}
             </div>
-            <div class="narrative-indicators">
+            <div class="narrativeAudio-indicators">
                 {{#each _items}}
-                <div class="narrative-progress component-item-color component-item-border"></div>
+                <div class="narrativeAudio-progress component-item-color component-item-border {{#if _isVisited}}visited{{/if}}" data-index="{{@index}}"></div>
                 {{/each}}
             </div>
         </div>
         <div class="clearfix"></div>
+
     </div>
 </div>

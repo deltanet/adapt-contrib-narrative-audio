@@ -1,103 +1,101 @@
-.narrativeAudio-component {
-
-    &.desktop {
-        .narrative-slide-container {
-            width: 50%;
-            margin-right: 3%;
-            float: left;
-            .dir-rtl & {
-                margin-right: inherit;
-                margin-left: 3%;
-                float: right;
-            }
-        }
-
-        .narrative-slider-graphic {
-            margin-right: 0;
-            width:50%;
-        }
-
-        .narrative-strapline {
-            display:none;
-        }
-
-        .narrative-content-inner {
-            .narrative-controls {
-                position: static;
-                display: none;
-                margin-top: 0px;
-                margin-bottom: 10px;
-                width: auto;
-                height: auto;
-                padding: 8px;
-                .icon {
-                    margin: 0px;
-                }
-            }
-            .narrative-indicators {
-                display: none;
-                position: relative;
-                top: -4px;
-            }
-            .narrative-progress {
-                background-color: @item-color;
-                &.selected {
-                    background-color: @item-color-selected;
-                }
-            }
-            .narrative-content-item.narrative-hidden {
-                    display: none;
-            }
-        }
-
-        .narrative-text-controls {
-            .narrative-content-inner {
-                position: relative;
-                .narrative-controls-container {
-                    position: absolute;
-                    width: 100%;
-                    left: 0px;
-                    top: 10px;
-                    display: block;
-                }
-                .narrative-controls {
-                    margin-bottom: 0px;
-                    display: inline-block;
-                    &.narrative-hidden {
-                        visibility: hidden;
-                    }
-                }
-                .narrative-control-left {
-                    float:left;
-                }
-                .narrative-control-right {
-                    float: right;
-                }
-                .narrative-indicators {
-                    display: inline-block;
-                    width: auto;
-                    position: absolute;
-                    margin-top: 10px;
-                    top: 0px;
-                    left: 50%;
-                }
-                .narrative-content-item {
-                    padding-top: 36px;
-                }
-            }
-
-            .narrative-slide-container {
-                .narrative-controls {
-                    display: none;
-                }
-                .narrative-indicators {
-                    display: none;
-                }
-            }
+.mode-large.narrativeAudio-component {
+    .narrativeAudio-slide-container {
+        width: 50%;
+        margin-right: 3%;
+        float: left;
+        .dir-rtl & {
+            margin-right: inherit;
+            margin-left: 3%;
+            float: right;
         }
     }
 
-    .narrative-content {
+    .narrativeAudio-slider-graphic {
+        margin-right: 0;
+        width: 50%;
+    }
+
+    .narrativeAudio-strapline {
+        display:none;
+    }
+
+    .narrativeAudio-content-inner {
+        .narrativeAudio-controls {
+            position: static;
+            display: none;
+            margin-top: 0px;
+            margin-bottom: 10px;
+            width: auto;
+            height: auto;
+            padding: 8px;
+            .icon {
+                margin: 0px;
+            }
+        }
+        .narrativeAudio-indicators {
+            display: none;
+            position: relative;
+            top: -4px;
+        }
+        .narrativeAudio-progress {
+            background-color: @item-color;
+            &.selected {
+                background-color: @item-color-selected;
+            }
+        }
+        .narrativeAudio-content-item.narrativeAudio-hidden {
+                display: none;
+        }
+    }
+
+    .narrativeAudio-text-controls {
+        .narrativeAudio-content-inner {
+            position: relative;
+            .narrativeAudio-controls-container {
+                position: absolute;
+                width: 100%;
+                left: 0px;
+                top: 10px;
+                display: block;
+            }
+            .narrativeAudio-controls {
+                margin-bottom: 0px;
+                display: inline-block;
+                &.narrativeAudio-hidden {
+                    visibility: hidden;
+                }
+            }
+            .narrativeAudio-control-left {
+                float:left;
+            }
+            .narrativeAudio-control-right {
+                float: right;
+            }
+            .narrativeAudio-indicators {
+                display: inline-block;
+                width: auto;
+                position: absolute;
+                margin-top: 10px;
+                top: 0px;
+                left: 50%;
+            }
+        }
+
+        .narrativeAudio-slide-container {
+            .narrativeAudio-controls {
+                display: none;
+            }
+            .narrativeAudio-indicators {
+                display: none;
+            }
+        }
+    }
+}
+
+
+.narrativeAudio-component {
+
+    .narrativeAudio-content {
         width: 46%;
         background-color: @item-color;
         color: @item-text-color;
@@ -107,26 +105,24 @@
         }
     }
 
-    .narrative-content-inner {
+    .narrativeAudio-content-inner {
         padding:20px;
     }
 
-    &.mobile {
-        .narrative-content {
-            display:none;
-        }
+    &.mode-small .narrativeAudio-content {
+        display:none;
     }
 
-    .narrative-content-instruction {
+    .narrativeAudio-content-instruction {
         font-weight: bold;
-        margin-bottom: @component-instruction-margin-bottom;
+        margin-top: @component-body-margin-bottom;
 
         instr {
             color: @button-color;
         }
   	}
 
-    .narrative-slide-container {
+    .narrativeAudio-slide-container {
         width: 100%;
         position: relative;
         overflow-x: hidden;
@@ -136,7 +132,7 @@
         }
     }
 
-    .narrative-slider-graphic {
+    .narrativeAudio-slider-graphic {
         position: relative;
         float: left;
         .dir-rtl & {
@@ -144,16 +140,11 @@
         }
     }
 
-    .narrative-item-title {
-        position:relative;
-        display:block;
-    }
-
-    .narrative-indicators {
+    .narrativeAudio-indicators {
         text-align: center;
     }
 
-    .narrative-progress {
+    .narrativeAudio-progress {
         width: (@icon-size/2);
         height: (@icon-size/2);
         display: inline-block;
@@ -167,7 +158,7 @@
         }
     }
 
-    .narrative-controls {
+    .narrativeAudio-controls {
         display: block;
         width: (@icon-size*2);
         height: (@icon-size*2);
@@ -187,12 +178,12 @@
             margin: (@icon-size/2);
             color: @item-text-color;
         }
-        &.narrative-hidden {
+        &.narrativeAudio-hidden {
             visibility: hidden;
         }
     }
 
-    .narrative-control-left {
+    .narrativeAudio-control-left {
         left: 0;
 
         .dir-rtl & {
@@ -201,7 +192,7 @@
         }
     }
 
-    .narrative-control-right {
+    .narrativeAudio-control-right {
         right: 0;
 
         .dir-rtl & {
@@ -210,26 +201,28 @@
         }
     }
 
-    .narrative-strapline {
+    .narrativeAudio-strapline {
         height: auto;
         position: relative;
     }
 
-    .narrative-strapline-header {
+    .narrativeAudio-strapline-header {
         overflow: hidden;
         position: relative;
     }
 
-    .narrative-strapline-header-inner {
-        position:relative;
+    .narrativeAudio-strapline-header-inner {
+        position: relative;
     }
 
-    .narrative-strapline-title {
+    .narrativeAudio-strapline-title {
         position: relative;
         float: left;
         text-decoration: none;
         background-color: @button-color;
         color: @button-text-color;
+        overflow: hidden;
+        min-height: (@item-padding-top + @item-padding-bottom + @icon-size);
         .dir-rtl & {
             float: right;
         }
@@ -260,21 +253,23 @@
         }
     }
 
-    .narrative-strapline-title-inner {
-        height: (@item-padding-top + @item-padding-bottom + @icon-size);
-        line-height: (@item-padding-top + @item-padding-bottom + @icon-size);
+    .narrativeAudio-strapline-title-inner {
         padding-left: (@icon-size/2);
         padding-right: (@item-padding-left + @item-padding-right + @icon-size);
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        padding-top: 10px;
+        padding-bottom: 10px;
         overflow: hidden;
+        width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+        vertical-align: middle;
         .dir-rtl & {
             padding-right: (@icon-size/2);
             padding-left: (@item-padding-left + @item-padding-right + @icon-size);
         }
     }
 
-    .narrative-popup-open {
+    .narrativeAudio-popup-open {
         display: block;
         position: absolute;
         top:0;
@@ -300,34 +295,14 @@
         line-height: 1em;
     }
 
-    .narrative-hidden {
+    .narrativeAudio-hidden {
         visibility: hidden;
     }
-}
 
-
-html.accessibility {
-
-    .narrative-control-left:focus, .narrative-control-left.focus {
-        left: extract(@focus-outline, 1);
-        .dir-rtl & {
-            left: inherit;
-            right: extract(@focus-outline, 1);
-        }
-    }
-
-    .narrative-control-right:focus, .narrative-control-right.focus {
-        right: extract(@focus-outline, 1);
-        .dir-rtl & {
-            right: inherit;
-            left: extract(@focus-outline, 1);
-        }
-    }
-
-
-    &.no-touch {
-        .narrative-strapline-title:focus .focus-rect {
-            outline: @focus-outline;
+    &:not(.disable-animation) {
+        .narrativeAudio-slider,
+        .narrativeAudio-strapline-header-inner {
+            transition: transform 400ms ease-in-out;
         }
     }
 }
