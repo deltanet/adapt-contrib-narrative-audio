@@ -5,11 +5,13 @@
             <div class="narrativeAudio-content-inner">
                 {{#each _items}}
                 <div class="narrativeAudio-content-item {{#if _isVisited}}visited{{/if}}" data-index="{{@index}}">
+                    {{#if title}}
                     <div class="narrativeAudio-content-title">
                         <div class="narrativeAudio-content-title-inner" {{a11y_attrs_heading 'componentItem'}}>
                             {{{title}}}
                         </div>
                     </div>
+                    {{/if}}
                     {{#if _graphic.alt}}{{{a11y_aria_image _graphic.alt}}}{{/if}}
                     <div class="narrativeAudio-content-body">
                         <div class="narrativeAudio-content-body-inner">
