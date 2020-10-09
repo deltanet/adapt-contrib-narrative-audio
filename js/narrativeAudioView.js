@@ -18,6 +18,7 @@ define([
         preRender: function() {
             this.listenTo(Adapt, {
                 'device:changed device:resize': this.reRender,
+                'device:changed': this.checkHotgraphic,
                 'notify:closed': this.closeNotify
             });
             this.renderMode();
@@ -129,11 +130,13 @@ define([
         },
 
         reRender: function() {
-            if (this.model.get('_wasHotgraphic') && this.isLargeMode()) {
-                this.replaceWithHotgraphic();
-            } else {
-                this.resizeControl();
-            }
+          this.resizeControl();
+        },
+
+        checkHotgraphic: function() {
+          if (this.model.get('_wasHotgraphic') && Adapt.device.screenSize === 'large') {
+            this.replaceWithHotgraphic();
+          }
         },
 
         closeNotify: function() {
