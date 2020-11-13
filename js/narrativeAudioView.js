@@ -32,6 +32,9 @@ define([
         'change:_isVisited': this.onItemsVisitedChange
       });
 
+      // Listen for text change on audio extension
+      this.listenTo(Adapt, "audio:changeText", this.replaceText);
+
       this.checkIfResetOnRevisit();
       this.calculateWidths();
     }
@@ -102,6 +105,10 @@ define([
       }
       this.setupEventListeners();
       this._isInitial = false;
+
+      if (Adapt.audio && this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
+        this.replaceText(Adapt.audio.textSize);
+      }
     }
 
     calculateWidths() {
@@ -269,9 +276,25 @@ define([
       }
     }
 
+    // Reduced text
+    replaceText(value) {
+      // If enabled
+      if (this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
+        // Change each items title and body
+        for (var i = 0; i < this.model.get('_items').length; i++) {
+          if(value == 0) {
+            this.$('.narrativeAudio-content-title-inner').eq(i).html(this.model.get('_items')[i].title);
+            this.$('.narrativeAudio-content-body-inner').eq(i).html(this.model.get('_items')[i].body);
+          } else {
+            this.$('.narrativeAudio-content-title-inner').eq(i).html(this.model.get('_items')[i].titleReduced);
+            this.$('.narrativeAudio-content-body-inner').eq(i).html(this.model.get('_items')[i].bodyReduced);
+          }
+        }
+      }
+    }
   }
 
-  NarrativeView.template = 'narrative';
+  NarrativeView.template = 'narrativeAudio';
 
   return NarrativeView;
 

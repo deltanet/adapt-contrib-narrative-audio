@@ -27,7 +27,13 @@
             </div>
           </div>
           {{/if}}
-
+          {{#if instruction}}
+          <div class="narrativeAudio-content-instruction">
+              <div class="narrativeAudio-content-instruction-inner">
+                  {{{compile instruction}}}
+              </div>
+          </div>
+          {{/if}}
         </div>
         {{/each}}
 

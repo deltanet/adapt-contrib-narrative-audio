@@ -40,6 +40,15 @@
       "help": "This is the mobile only instruction text",
       "translatable": true
     },
+    "_isResetOnRevisit": {
+      "type":"boolean",
+      "required":true,
+      "default": false,
+      "title": "Reset on revisit",
+      "inputType": {"type": "Boolean", "options": [false, true]},
+      "validators": [],
+      "help": "If set to 'true', the first item will show on revisit, if 'false' the item the user last viewed will be displayed on revisit"
+    },
     "_hasNavigationInTextArea": {
       "type": "boolean",
       "required": true,
@@ -80,6 +89,16 @@
             "help": "",
             "translatable": true
           },
+          "titleReduced": {
+            "type":"string",
+            "required": false,
+            "default": "",
+            "title": "Reduced text narrative display title",
+            "inputType": "Text",
+            "validators": [],
+            "help": "",
+            "translatable": true
+          },
           "_ariaLevel": {
             "type": "number",
             "required": true,
@@ -97,6 +116,25 @@
             "inputType": "TextArea",
             "validators": [],
             "help": "",
+            "translatable": true
+          },
+          "bodyReduced": {
+            "type":"string",
+            "required": false,
+            "default": "",
+            "title": "Reduced text narrative main text",
+            "inputType": "TextArea",
+            "validators": [],
+            "help": "",
+            "translatable": true
+          },
+          "instruction": {
+            "type": "string",
+            "required": false,
+            "default": "",
+            "inputType": "Text",
+            "validators": [],
+            "help": "This is the instruction text",
             "translatable": true
           },
           "_graphic": {
@@ -142,6 +180,21 @@
             "validators": ["required"],
             "help": "",
             "translatable": true
+          },
+          "_audio": {
+            "type": "object",
+            "required": false,
+            "properties": {
+              "src": {
+                "type": "string",
+                "required": false,
+                "default": "",
+                "title": "Narrative item Audio",
+                "inputType": "Asset:audio",
+                "validators": [],
+                "help": "Optional audio for this item"
+              }
+            }
           }
         }
       }
