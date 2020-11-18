@@ -1,4 +1,4 @@
-.narrative {
+.narrativeaudio {
   &__content {
     display: none;
 
@@ -12,6 +12,15 @@
         margin-left: inherit;
         margin-right: 2%;
       }
+    }
+  }
+
+  &__content-instruction {
+    margin-top: @component-instruction-margin;
+    .instruction-text;
+
+    instr {
+      color: @btn-color;
     }
   }
 
@@ -185,22 +194,22 @@
   // Could we refactor this better?
   // --------------------------------------------------
   &__content {
-    .narrative__controls,
-    .narrative__indicators {
+    .narrativeaudio__controls,
+    .narrativeaudio__indicators {
       display: none;
     }
   }
 
   &__text-controls {
-    .narrative__content {
+    .narrativeaudio__content {
       position: relative;
       padding-top: @icon-size + (@icon-padding * 2);
 
-      .narrative__indicators {
+      .narrativeaudio__indicators {
         display: flex;
       }
 
-      .narrative__controls-container {
+      .narrativeaudio__controls-container {
         position: absolute;
         top: 0;
         left: 0;
@@ -210,7 +219,7 @@
         justify-content: space-evenly;
       }
 
-      .narrative__controls {
+      .narrativeaudio__controls {
         position: relative;
         top: 0;
         display: block;
@@ -221,8 +230,8 @@
     // Hide slide controls and indicators until single column view
     // --------------------------------------------------
     @media (min-width: @device-width-medium) {
-      .narrative__slide-container .narrative__controls,
-      .narrative__slide-indicators {
+      .narrativeaudio__slide-container .narrativeaudio__controls,
+      .narrativeaudio__slide-indicators {
         display: none;
       }
     }

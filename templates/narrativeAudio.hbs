@@ -1,18 +1,18 @@
-<div class="component__inner narrative__inner">
+<div class="component__inner narrativeaudio__inner">
 
   {{> component this}}
 
-  <div class="component__widget narrative__widget{{#if _hasNavigationInTextArea}} narrative__text-controls{{/if}}">
+  <div class="component__widget narrativeaudio__widget{{#if _hasNavigationInTextArea}} narrativeaudio__text-controls{{/if}}">
 
-    <div class="narrative__content">
-      <div class="narrative__content-inner">
+    <div class="narrativeaudio__content">
+      <div class="narrativeaudio__content-inner">
 
         {{#each _items}}
-        <div class="narrative__content-item{{#if _isVisited}} is-visited{{/if}}" data-index="{{@index}}">
+        <div class="narrativeaudio__content-item{{#if _isVisited}} is-visited{{/if}}" data-index="{{@index}}">
 
           {{#if title}}
-          <div class="narrative__content-title">
-            <div class="narrative__content-title-inner" {{a11y_attrs_heading 'componentItem'}}>
+          <div class="narrativeaudio__content-title">
+            <div class="narrativeaudio__content-title-inner" {{a11y_attrs_heading 'componentItem'}}>
               {{{title}}}
             </div>
           </div>
@@ -21,15 +21,15 @@
           {{#if _graphic.alt}}{{{a11y_aria_image _graphic.alt}}}{{/if}}
 
           {{#if body}}
-          <div class="narrative__content-body">
-            <div class="narrative__content-body-inner">
+          <div class="narrativeaudio__content-body">
+            <div class="narrativeaudio__content-body-inner">
               {{{compile body}}}
             </div>
           </div>
           {{/if}}
           {{#if instruction}}
-          <div class="narrativeAudio-content-instruction">
-              <div class="narrativeAudio-content-instruction-inner">
+          <div class="narrativeaudio__content-instruction">
+              <div class="narrativeaudio__content-instruction-inner">
                   {{{compile instruction}}}
               </div>
           </div>
@@ -37,19 +37,19 @@
         </div>
         {{/each}}
 
-        <div class="narrative__controls-container u-clearfix">
+        <div class="narrativeaudio__controls-container u-clearfix">
 
-          <button data-direction="left" class="btn-icon narrative__controls narrative__controls-left js-narrative-controls-click" aria-label="{{_globals._accessibility._ariaLabels.previous}}">
+          <button data-direction="left" class="btn-icon narrativeaudio__controls narrativeaudio__controls-left js-narrativeaudio-controls-click" aria-label="{{_globals._accessibility._ariaLabels.previous}}">
             <div class="icon"></div>
           </button>
 
-          <div class="narrative__indicators">
+          <div class="narrativeaudio__indicators">
             {{#each _items}}
-            <div class="narrative__progress js-narrative-progress-click{{#if _isVisited}} is-visited{{/if}}" data-index="{{@index}}"></div>
+            <div class="narrativeaudio__progress js-narrativeaudio-progress-click{{#if _isVisited}} is-visited{{/if}}" data-index="{{@index}}"></div>
             {{/each}}
           </div>
 
-          <button data-direction="right" class="btn-icon narrative__controls narrative__controls-right js-narrative-controls-click" aria-label="{{_globals._accessibility._ariaLabels.next}}">
+          <button data-direction="right" class="btn-icon narrativeaudio__controls narrativeaudio__controls-right js-narrativeaudio-controls-click" aria-label="{{_globals._accessibility._ariaLabels.next}}">
             <div class="icon"></div>
           </button>
         </div>
@@ -57,21 +57,21 @@
       </div>
     </div>
 
-    <div class="narrative__strapline">
+    <div class="narrativeaudio__strapline">
 
-      <div class="narrative__strapline-header">
-        <div class="narrative__strapline-header-inner u-clearfix" style="width: {{_totalWidth}}%">
+      <div class="narrativeaudio__strapline-header">
+        <div class="narrativeaudio__strapline-header-inner u-clearfix" style="width: {{_totalWidth}}%">
 
           {{#each _items}}
-          <button class="narrative__strapline-btn js-narrative-strapline-open-popup{{#if _isVisited}} is-visited{{/if}}" aria-label="{{{strapline}}}" style="width: {{../_itemWidth}}%" data-index="{{@index}}">
+          <button class="narrativeaudio__strapline-btn js-narrativeaudio-strapline-open-popup{{#if _isVisited}} is-visited{{/if}}" aria-label="{{{strapline}}}" style="width: {{../_itemWidth}}%" data-index="{{@index}}">
 
-            <div class="narrative__strapline-title">
-              <div class="narrative__strapline-title-inner">
+            <div class="narrativeaudio__strapline-title">
+              <div class="narrativeaudio__strapline-title-inner">
                 {{{strapline}}}
               </div>
             </div>
 
-            <div class="btn-icon narrative__strapline-icon">
+            <div class="btn-icon narrativeaudio__strapline-icon">
               <div class="icon"></div>
             </div>
 
@@ -85,26 +85,26 @@
 
     </div>
 
-    <div class="narrative__slide-container">
+    <div class="narrativeaudio__slide-container">
 
-      <button data-direction="left" class="btn-icon narrative__controls narrative__controls-left js-narrative-controls-click" aria-label="{{_globals._accessibility._ariaLabels.previous}}">
+      <button data-direction="left" class="btn-icon narrativeaudio__controls narrativeaudio__controls-left js-narrativeaudio-controls-click" aria-label="{{_globals._accessibility._ariaLabels.previous}}">
         <div class="icon"></div>
       </button>
 
-      <button data-direction="right" class="btn-icon narrative__controls narrative__controls-right js-narrative-controls-click" aria-label="{{_globals._accessibility._ariaLabels.next}}">
+      <button data-direction="right" class="btn-icon narrativeaudio__controls narrativeaudio__controls-right js-narrativeaudio-controls-click" aria-label="{{_globals._accessibility._ariaLabels.next}}">
         <div class="icon"></div>
       </button>
 
-      <div class="narrative__slider u-clearfix" style="width: {{_totalWidth}}%">
+      <div class="narrativeaudio__slider u-clearfix" style="width: {{_totalWidth}}%">
 
         {{#each _items}}
-        <div class="narrative__slider-image-container{{#if _isVisited}} is-visited{{/if}}{{#if _graphic.attribution}} has-attribution{{/if}}" style="width: {{../_itemWidth}}%" data-index="{{@index}}">
+        <div class="narrativeaudio__slider-image-container{{#if _isVisited}} is-visited{{/if}}{{#if _graphic.attribution}} has-attribution{{/if}}" style="width: {{../_itemWidth}}%" data-index="{{@index}}">
 
-          <img class="narrative__slider-image" src="{{_graphic.src}}" aria-hidden="true">
+          <img class="narrativeaudio__slider-image" src="{{_graphic.src}}" aria-hidden="true">
 
           {{#if _graphic.attribution}}
-          <div class="component__attribution narrative__attribution">
-            <div class="component__attribution-inner narrative__attribution-inner">
+          <div class="component__attribution narrativeaudio__attribution">
+            <div class="component__attribution-inner narrativeaudio__attribution-inner">
               {{{_graphic.attribution}}}
             </div>
           </div>
@@ -117,13 +117,15 @@
 
     </div>
 
-    <div class="narrative__indicators narrative__slide-indicators">
+    <div class="narrativeaudio__indicators narrativeaudio__slide-indicators">
 
       {{#each _items}}
-      <div class="narrative__progress js-narrative-progress-click{{#if _isVisited}} is-visited{{/if}}" data-index="{{@index}}"></div>
+      <div class="narrativeaudio__progress js-narrativeaudio-progress-click{{#if _isVisited}} is-visited{{/if}}" data-index="{{@index}}"></div>
       {{/each}}
 
     </div>
+
+    <div class="u-clearfix"></div>
 
   </div>
 </div>
