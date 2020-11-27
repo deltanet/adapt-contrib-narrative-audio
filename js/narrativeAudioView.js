@@ -256,6 +256,13 @@ define([
         // Set the visited attribute for small and medium screen devices
         currentItem.toggleVisited(true);
       });
+
+      if(!Adapt.audio) return;
+
+      if (this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status == 1) {
+        Adapt.audio.audioClip[this.model.get('_audio')._channel].onscreenID = "";
+        Adapt.trigger('audio:playAudio', currentItem.get('_audio').src, this.model.get('_id'), this.model.get('_audio')._channel);
+      }
     }
 
     onNavigationClicked(event) {
@@ -263,6 +270,16 @@ define([
       let index = this.model.getActiveItem().get('_index');
       $btn.data('direction') === 'right' ? index++ : index--;
       this.model.setActiveItem(index);
+
+      if (!Adapt.audio) return;
+      if (Adapt.device.screenSize === 'large') {
+        var currentItem = this.model.getActiveItem();
+
+        if (this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status == 1) {
+          Adapt.audio.audioClip[this.model.get('_audio')._channel].onscreenID = "";
+          Adapt.trigger('audio:playAudio', currentItem.get('_audio').src, this.model.get('_id'), this.model.get('_audio')._channel);
+        }
+      }
     }
 
     onProgressClicked(event) {
