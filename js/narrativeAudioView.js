@@ -4,7 +4,7 @@ define([
   './modeEnum'
 ], function(Adapt, ComponentView, MODE) {
 
-  class NarrativeView extends ComponentView {
+  class NarrativeAudioView extends ComponentView {
 
     events() {
       return {
@@ -47,7 +47,7 @@ define([
 
     setFocus(itemIndex) {
       if (this._isInitial) return;
-      const $straplineHeaderElm = this.$('.narrative__strapline-header-inner');
+      const $straplineHeaderElm = this.$('.narrativeaudio__strapline-header-inner');
       const hasStraplineTransition = !this.isLargeMode() && ($straplineHeaderElm.css('transitionDuration') !== '0s');
       if (hasStraplineTransition) {
         $straplineHeaderElm.one('transitionend', () => {
@@ -62,8 +62,8 @@ define([
     focusOnNarrativeElement(itemIndex) {
       const dataIndexAttr = `[data-index='${itemIndex}']`;
       const $elementToFocus = this.isLargeMode() ?
-        this.$(`.narrative__content-item${dataIndexAttr}`) :
-        this.$(`.narrative__strapline-btn${dataIndexAttr}`);
+        this.$(`.narrativeaudio__content-item${dataIndexAttr}`) :
+        this.$(`.narrativeaudio__strapline-btn${dataIndexAttr}`);
       Adapt.a11y.focusFirst($elementToFocus);
     }
 
@@ -175,11 +175,11 @@ define([
     }
 
     replaceWithHotgraphic() {
-      const HotgraphicView = Adapt.getViewClass('hotgraphicAudio');
-      if (!HotgraphicView) return;
+      const HotgraphicAudioView = Adapt.getViewClass('hotgraphicAudio');
+      if (!HotgraphicAudioView) return;
 
       const model = this.prepareHotgraphicModel();
-      const newHotgraphic = new HotgraphicView({ model });
+      const newHotgraphic = new HotgraphicAudioView({ model });
 
       this.$el.parents('.component__container').append(newHotgraphic.$el);
       this.remove();
@@ -356,8 +356,8 @@ define([
     }
   }
 
-  NarrativeView.template = 'narrativeAudio';
+  NarrativeAudioView.template = 'narrativeAudio';
 
-  return NarrativeView;
+  return NarrativeAudioView;
 
 });
