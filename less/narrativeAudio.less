@@ -91,9 +91,7 @@
   &__strapline-icon .icon {
     .icon-plus;
   }
-  // --------------------------------------------------
 
-  // --------------------------------------------------
   // Graphic
   // --------------------------------------------------
   &__slide-container {
@@ -110,7 +108,6 @@
     .u-float-left;
   }
 
-  // --------------------------------------------------
   // Button controls
   // --------------------------------------------------
   &__controls-container {
@@ -150,7 +147,6 @@
     .icon-controls-right;
   }
 
-  // --------------------------------------------------
   // Progress indicators
   // --------------------------------------------------
   &__indicators {
@@ -175,9 +171,7 @@
   &__progress.is-selected {
     background-color: lighten(@background, 10%);
   }
-  // --------------------------------------------------
 
-  // --------------------------------------------------
   // When the disable animation class is not present add a transition effect
   // to the narrative graphic on desktop and strapline on mobile
   // --------------------------------------------------
@@ -187,54 +181,46 @@
       .transition(transform 400ms ease-in-out);
     }
   }
-  // --------------------------------------------------
 
-  // --------------------------------------------------
   // Controls located in text content area
-  // Could we refactor this better?
   // --------------------------------------------------
-  &__content {
-    .narrativeaudio__controls,
-    .narrativeaudio__indicators {
-      display: none;
-    }
+  &__content &__controls,
+  &__content &__indicators {
+    display: none;
   }
 
-  &__text-controls {
-    .narrativeaudio__content {
-      position: relative;
-      padding-top: @icon-size + (@icon-padding * 2);
+  &__text-controls &__content {
+    position: relative;
+    padding-top: @icon-size + (@icon-padding * 2) + @item-padding;
+  }
 
-      .narrativeaudio__indicators {
-        display: flex;
-      }
+  &__text-controls &__content &__indicators {
+    display: flex;
+  }
 
-      .narrativeaudio__controls-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-      }
+  &__text-controls &__content &__controls-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
 
-      .narrativeaudio__controls {
-        position: relative;
-        top: 0;
-        display: block;
-        transform: none;
-      }
-    }
+  &__text-controls &__content &__controls {
+    position: relative;
+    top: 0;
+    display: block;
+    transform: none;
+  }
 
-    // Hide slide controls and indicators until single column view
-    // --------------------------------------------------
-    @media (min-width: @device-width-medium) {
-      .narrativeaudio__slide-container .narrativeaudio__controls,
-      .narrativeaudio__slide-indicators {
-        display: none;
-      }
+  // Hide slide controls and indicators until single column view
+  // --------------------------------------------------
+  @media (min-width: @device-width-medium) {
+    &__text-controls &__slide-container &__controls,
+    &__text-controls &__slide-indicators {
+      .u-display-none;
     }
   }
-  // --------------------------------------------------
 }

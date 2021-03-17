@@ -42,6 +42,29 @@ define([
     onItemsActiveChange(item, _isActive) {
       if (!_isActive) return;
       this.setStage(item);
+      this.setFocus(item.get('_index'));
+    }
+
+    setFocus(itemIndex) {
+      if (this._isInitial) return;
+      const $straplineHeaderElm = this.$('.narrative__strapline-header-inner');
+      const hasStraplineTransition = !this.isLargeMode() && ($straplineHeaderElm.css('transitionDuration') !== '0s');
+      if (hasStraplineTransition) {
+        $straplineHeaderElm.one('transitionend', () => {
+          this.focusOnNarrativeElement(itemIndex);
+        });
+        return;
+      }
+
+      this.focusOnNarrativeElement(itemIndex);
+    }
+
+    focusOnNarrativeElement(itemIndex) {
+      const dataIndexAttr = `[data-index='${itemIndex}']`;
+      const $elementToFocus = this.isLargeMode() ?
+        this.$(`.narrative__content-item${dataIndexAttr}`) :
+        this.$(`.narrative__strapline-btn${dataIndexAttr}`);
+      Adapt.a11y.focusFirst($elementToFocus);
     }
 
     onItemsVisitedChange(item, _isVisited) {
@@ -189,11 +212,6 @@ define([
 
       $sliderElm.css('transform', cssValue);
       $straplineHeaderElm.css('transform', cssValue);
-
-      if (this._isInitial) return;
-
-      const $elementToFocus = this.isLargeMode() ? this.$(`.narrativeaudio__content-item[data-index="${itemIndex}"]`) : this.$('.narrativeaudio__strapline-btn');
-      Adapt.a11y.focusFirst($elementToFocus);
     }
 
     setStage(item) {
@@ -235,8 +253,35 @@ define([
       const isAtStart = index === 0;
       const isAtEnd = index === itemCount - 1;
 
-      this.$('.narrativeaudio__controls-left').toggleClass('u-visibility-hidden', isAtStart);
-      this.$('.narrativeaudio__controls-right').toggleClass('u-visibility-hidden', isAtEnd);
+      const $left = this.$('.narrativeaudio__controls-left');
+      const $right = this.$('.narrativeaudio__controls-right');
+
+      const globals = Adapt.course.get('_globals');
+
+      const ariaLabelsGlobals = globals._accessibility._ariaLabels;
+      const narrativeGlobals = globals._components._narrative;
+
+      const ariaLabelPrevious = narrativeGlobals.previous || ariaLabelsGlobals.previous;
+      const ariaLabelNext = narrativeGlobals.next || ariaLabelsGlobals.next;
+
+      const prevTitle = isAtStart ? '' : this.model.getItem(index - 1).get('title');
+      const nextTitle = isAtEnd ? '' : this.model.getItem(index + 1).get('title');
+
+      $left.toggleClass('u-visibility-hidden', isAtStart);
+      $right.toggleClass('u-visibility-hidden', isAtEnd);
+
+      $left.attr('aria-label', Handlebars.compile(ariaLabelPrevious)({
+        title: prevTitle,
+        _globals: globals,
+        itemNumber: isAtStart ? null : index,
+        totalItems: itemCount
+      }));
+      $right.attr('aria-label', Handlebars.compile(ariaLabelNext)({
+        title: nextTitle,
+        _globals: globals,
+        itemNumber: isAtEnd ? null : index + 2,
+        totalItems: itemCount
+      }));
     }
 
     evaluateCompletion() {
