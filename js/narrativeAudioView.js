@@ -259,7 +259,7 @@ define([
       const globals = Adapt.course.get('_globals');
 
       const ariaLabelsGlobals = globals._accessibility._ariaLabels;
-      const narrativeGlobals = globals._components._narrative;
+      const narrativeGlobals = globals._components._narrativeAudio;
 
       const ariaLabelPrevious = narrativeGlobals.previous || ariaLabelsGlobals.previous;
       const ariaLabelNext = narrativeGlobals.next || ariaLabelsGlobals.next;
